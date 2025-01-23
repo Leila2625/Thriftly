@@ -1,6 +1,7 @@
 html,
 body {
   height: 100%;
+  background-color: #f2ede6;
 }
 body {
   display: flex;
