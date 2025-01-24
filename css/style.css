@@ -1,0 +1,130 @@
+html,
+body {
+  height: 100%;
+  background-color: #f2ede6;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+.logo {
+  height: 70px; /* Adjust the height as needed */
+  width: auto; /* Maintain aspect ratio */
+}
+.content {
+  flex-grow: 1;
+}
+.collapse {
+  margin-right: 10vw; /* Shift navbar items slightly to the left */
+}
+.nav-item {
+  font-size: 1.2rem;
+}
+.navbar {
+  background-color: #b2ac88; /* Nav bar color */
+  color: black; /* Navbar text color */
+}
+footer {
+  background-color: #b2ac88; /* Footer color */
+  color: black; /* Footer text color */
+}
+/* Ensuring text links are black */
+.navbar-nav .nav-link,
+footer a {
+  color: black; /* Override any other color styles */
+}
+.navbar-brand {
+  font-size: 3rem; /* Adjust the value as needed */
+}
+footer {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically (if needed) */
+  text-align: center; /* Center text inside the footer */
+}
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+}
+
+footer .container {
+  width: 100%;
+  max-width: none;
+}
+
+ul.list-inline {
+  display: flex;
+  justify-content: center;
+  padding-left: 0;
+}
+
+.list-inline-item {
+  margin-right: 20px;
+}
+/* Flex container to center and space icons */
+.account-icon,
+.wishlist-icon,
+.shop-icon {
+  margin-right: 0.7rem; /* Adds equal space between all icons */
+  font-size: 1.8rem; /* Bigger icons */
+  color: black; /* Default icon color */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effects for icons */
+.account-icon i:hover,
+.wishlist-icon i:hover,
+.shop-icon i:hover {
+  color: #555; /* Change icon color on hover */
+  transform: scale(1.1); /* Make the icon bigger on hover */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect for nav links */
+.nav-link:hover {
+  color: #555; /* Change text color to gray on hover */
+  transform: scale(1.05); /* Make the text bigger on hover */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* Ensure no extra spacing on the last icon */
+.shop-icon {
+  margin-right: 2rem;
+}
+
+.square {
+  max-width: 75%; /* Adjust the max width as needed */
+  height: auto; /* Maintain aspect ratio */
+  margin: 0 auto; /* Center if necessary */
+}
+
+/* Flexbox container for the image and text */
+
+/* Green rectangle section */
+
+/* Footer links layout for mobile devices */
+@media (max-width: 768px) {
+  ul.list-inline {
+    display: block; /* Stack items vertically on smaller screens */
+    text-align: center;
+    padding-left: 40px; /* Add some padding for better alignment */
+  }
+
+  .list-inline-item {
+    margin-bottom: 10px; /* Add space between items */
+    margin-right: 0; /* Remove right margin */
+  }
+  .account-icon,
+  .wishlist-icon,
+  .shop-icon {
+    margin-right: 0.5rem; /* Adds equal space between all icons */
+    font-size: 1.3rem;
+  }
+  .our_story {
+    align-items: center;
+    text-align: center;
+  }
+}
