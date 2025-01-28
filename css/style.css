@@ -8,9 +8,16 @@ body {
   flex-direction: column;
 }
 .logo {
-  height: 70px; /* Adjust the height as needed */
+  height: 70px;
   width: auto; /* Maintain aspect ratio */
 }
+.logo-account {
+  height: 100px;
+  width: auto; /* Maintain aspect ratio */
+  display: block; /* Ensures it's treated as a block-level element */
+  margin: 0 auto; /* Centers the image horizontally */
+}
+
 .content {
   flex-grow: 1;
 }
@@ -20,9 +27,16 @@ body {
 .nav-item {
   font-size: 1.2rem;
 }
-.navbar {
+.main-nav {
   background-color: #b2ac88; /* Nav bar color */
   color: black; /* Navbar text color */
+}
+.second-nav {
+  background-color: #ced9c1; /* Nav bar color */
+  color: black; /* Navbar text color */
+}
+.underlined {
+  text-decoration: underline;
 }
 footer {
   background-color: #b2ac88; /* Footer color */
