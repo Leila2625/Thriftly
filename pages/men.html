@@ -91,133 +91,95 @@
 
 <!-- Product Listings Section -->
 <div class="container mt-5">
-  <div class="row">
-        <!-- Thrift Item 1 -->
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male1.png" class="img-fluid" alt="Grey Lee Jorts">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">Grey Lee Jorts</h5>
-          <p><strong>$18.99</strong></p>
-        </div>
-    
-        <!-- Repeat for other items -->
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male2.png" class="img-fluid" alt="Blue Lee Jorts">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">Blue Lee Jorts</h5>
-          <p><strong>$32.50</strong></p>
-        </div>
-    
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male3.png" class="img-fluid" alt="Wrangler Carpenter Jorts">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">Wrangler Carpenter Jorts</h5>
-          <p><strong>$24.99</strong></p>
-        </div>
-    
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male4.png" class="img-fluid" alt="Light Blue Jorts">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">Light Blue Jorts</h5>
-          <p><strong>$29.99</strong></p>
-        </div>
-    
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male5.png" class="img-fluid" alt="Camo Cargos">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">Camo Cargos</h5>
-          <p><strong>$15.99</strong></p>
-        </div>
-    
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male6.png" class="img-fluid" alt="Black Carhartt Cargos">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">Black Carhartt Cargos</h5>
-          <p><strong>$21.00</strong></p>
-        </div>
-    
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male7.png" class="img-fluid" alt="Oversized Baggy Blue Jeans">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">Oversized Baggy Blue Jeans</h5>
-          <p><strong>$35.00</strong></p>
-        </div>
-    
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male8.png" class="img-fluid" alt="Oversized Grey Distressed Jeans">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">Oversized Grey Distressed Jeans</h5>
-          <p><strong>$28.50</strong></p>
-        </div>
-      </div>
-    </div>
+  <div class="row" id="product-list"></div>
+</div>
 
-
-<style>
-.product-image-container {
-  position: relative;  /* Make the image container position relative */
-  display: inline-block; /* Ensure the icon is positioned relative to the image */
+<script>
+const products = [
+{
+  name: "Grey Lee Jorts",
+  image: "../assets/male1.png",
+  price: "$18.99",
+  description: "Classic grey jorts with a timeless look.",
+  id: 17
+},
+{
+  name: "Blue Lee Jorts",
+  image: "../assets/male2.png",
+  price: "$32.50",
+  description: "Stylish blue jorts perfect for any casual outing.",
+  id: 18
+},
+{
+  name: "Wrangler Carpenter Jorts",
+  image: "../assets/male3.png",
+  price: "$24.99",
+  description: "Durable carpenter jorts from Wrangler.",
+  id: 19
+},
+{
+  name: "Light Blue Jorts",
+  image: "../assets/male4.png",
+  price: "$29.99",
+  description: "Light blue jorts that offer comfort and style.",
+  id: 20
+},
+{
+  name: "Camo Cargos",
+  image: "../assets/male5.png",
+  price: "$15.99",
+  description: "Camo-patterned cargos for outdoor adventures.",
+  id: 21
+},
+{
+  name: "Black Carhartt Cargos",
+  image: "../assets/male6.png",
+  price: "$21.00",
+  description: "Reliable black cargos from Carhartt.",
+  id: 22
+},
+{
+  name: "Oversized Baggy Blue Jeans",
+  image: "../assets/male7.png",
+  price: "$35.00",
+  description: "Comfortable oversized baggy blue jeans.",
+  id: 23
+},
+{
+  name: "Oversized Grey Distressed Jeans",
+  image: "../assets/male8.png",
+  price: "$28.50",
+  description: "Stylish oversized grey distressed jeans.",
+  id: 24
 }
-
-.product-cart {
-  position: absolute;
-  top: 10px; /* Adjust the distance from the top */
-  right: 5px; /* Adjust the distance from the right */
-  font-size: 20px;
-  color: #000;
-  cursor: pointer;
-}
-
-h5 {
-  margin-top: 10px;  /* Add spacing between the image and the product name */
-}
-
-p {
-  margin-top: 5px;  /* Add spacing between the product name and price */
-}
-</style>
+];
 
 
+        // Function to generate product cards
+        function loadProducts() {
+        const productList = document.getElementById("product-list");
 
+        products.forEach(product => {
+          const productCard = document.createElement("div");
+          productCard.classList.add("col-md-3", "mb-4", "text-center");
 
+          productCard.innerHTML = `
+            <a href="product.html?id=${product.id}">
+              <img src="${product.image}" class="img-fluid" alt="${product.name}">
+            </a>
+            <div class="d-flex justify-content-center align-items-center mt-2">
+              <h5 class="mb-0">${product.name}</h5>
+            </div>
+            <p><strong>${product.price}</strong></p>
+          `;
 
+          productList.appendChild(productCard);
+        });
+      }
 
-
-
-
-    
+      // Call the function to load products when the page is ready
+      loadProducts();
+    </script>
 
     <!-- Footer -->
     <footer class="py-4">
