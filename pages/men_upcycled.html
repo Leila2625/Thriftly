@@ -92,125 +92,95 @@
 
 <!-- Product Listings Section -->
 <div class="container mt-5">
-  <div class="row">
-        <!-- Thrift Item 1 -->
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male9.png" class="img-fluid" alt="Black Baggy Jeans">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">Black Baggy Jeans</h5>
-          <p><strong>$18.99</strong></p>
-        </div>
-    
-        <!-- Repeat for other items -->
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male10.png" class="img-fluid" alt="Mouth T-Shirt">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">Mouth T-Shirt</h5>
-          <p><strong>$32.50</strong></p>
-        </div>
-    
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male11.png" class="img-fluid" alt="Frank Ocean T-Shirt">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">Frank Ocean T-Shirt</h5>
-          <p><strong>$24.99</strong></p>
-        </div>
-    
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male12.png" class="img-fluid" alt="Seven Ball T-Shirt">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">Seven Ball T-Shirt</h5>
-          <p><strong>$29.99</strong></p>
-        </div>
-    
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male13.png" class="img-fluid" alt="White Nike T-Shirt">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">White Nike T-Shirt</h5>
-          <p><strong>$15.99</strong></p>
-        </div>
-    
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male14.png" class="img-fluid" alt="White Car T-Shirt">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">White Car T-Shirt</h5>
-          <p><strong>$21.00</strong></p>
-        </div>
-    
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male15.png" class="img-fluid" alt="Grey T-Shirt">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">Grey T-Shirt</h5>
-          <p><strong>$35.00</strong></p>
-        </div>
-    
-        <div class="col-md-3 mb-4 text-center">
-          <div class="product-image-container">
-            <img src="../assets/male16.png" class="img-fluid" alt="Navy Blue Cahartt Jacket">
-            <a href="#" class="shop-icon product-cart">
-              <i class="bi bi-cart3 shopping-cart"></i>
-            </a>
-          </div>
-          <h5 class="mb-0">Navy Blue Cahartt Jacket</h5>
-          <p><strong>$28.50</strong></p>
-        </div>
-      </div>
-    </div>
+  <div class="row" id="product-list"></div>
+</div>
 
+<script>
 
-<style>
-.product-image-container {
-  position: relative;  /* Make the image container position relative */
-  display: inline-block; /* Ensure the icon is positioned relative to the image */
-}
+ const products = [
+  {
+    name: "Black Baggy Jeans",
+    image: "../assets/male9.png",
+    price: "$18.99",
+    description: "Stylish black baggy jeans for a relaxed look.",
+    id: 25
+  },
+  {
+    name: "Mouth T-Shirt",
+    image: "../assets/male10.png",
+    price: "$32.50",
+    description: "Bold Mouth T-shirt perfect for casual wear.",
+    id: 26
+  },
+  {
+    name: "Frank Ocean T-Shirt",
+    image: "../assets/male11.png",
+    price: "$24.99",
+    description: "Frank Ocean-inspired T-shirt for music fans.",
+    id: 27
+  },
+  {
+    name: "Seven Ball T-Shirt",
+    image: "../assets/male12.png",
+    price: "$29.99",
+    description: "Trendy Seven Ball graphic T-shirt.",
+    id: 28
+  },
+  {
+    name: "White Nike T-Shirt",
+    image: "../assets/male13.png",
+    price: "$15.99",
+    description: "Simple and classic white Nike T-shirt.",
+    id: 29
+  },
+  {
+    name: "White Car T-Shirt",
+    image: "../assets/male14.png",
+    price: "$21.00",
+    description: "Casual white T-shirt with a cool car design.",
+    id: 30
+  },
+  {
+    name: "Grey T-Shirt",
+    image: "../assets/male15.png",
+    price: "$35.00",
+    description: "Comfortable grey T-shirt for everyday wear.",
+    id: 31
+  },
+  {
+    name: "Navy Blue Carhartt Jacket",
+    image: "../assets/male16.png",
+    price: "$28.50",
+    description: "Durable navy blue jacket from Carhartt.",
+    id: 32
+  }
+];
 
-.product-cart {
-  position: absolute;
-  top: 10px; /* Adjust the distance from the top */
-  right: 5px; /* Adjust the distance from the right */
-  font-size: 20px;
-  color: #000;
-  cursor: pointer;
-}
+        // Function to generate product cards
+        function loadProducts() {
+        const productList = document.getElementById("product-list");
 
-h5 {
-  margin-top: 10px;  /* Add spacing between the image and the product name */
-}
+        products.forEach(product => {
+          const productCard = document.createElement("div");
+          productCard.classList.add("col-md-3", "mb-4", "text-center");
 
-p {
-  margin-top: 5px;  /* Add spacing between the product name and price */
-}
-</style>
+          productCard.innerHTML = `
+            <a href="product.html?id=${product.id}">
+              <img src="${product.image}" class="img-fluid" alt="${product.name}">
+            </a>
+            <div class="d-flex justify-content-center align-items-center mt-2">
+              <h5 class="mb-0">${product.name}</h5>
+            </div>
+            <p><strong>${product.price}</strong></p>
+          `;
 
+          productList.appendChild(productCard);
+        });
+      }
 
+      // Call the function to load products when the page is ready
+      loadProducts();
+    </script>
 
     <!-- Footer -->
     <footer class="py-4">
