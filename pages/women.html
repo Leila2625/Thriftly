@@ -88,130 +88,97 @@
       </nav>
     </div>
 
-<!-- Product Listings Section -->
-<div class="container mt-5">
-  <div class="row">
-    <!-- Thrift Item 1 -->
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female1.png" class="img-fluid" alt="Brown leather Jacket">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">Brown leather Jacket</h5>
-      <p><strong>$18.99</strong></p>
+    <!-- Product Listings Section -->
+    <div class="container mt-5">
+      <div class="row" id="product-list"></div>
     </div>
 
-    <!-- Repeat for other items -->
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female2.png" class="img-fluid" alt="Abercrombie Hoodie">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">Abercrombie Hoodie</h5>
-      <p><strong>$32.50</strong></p>
-    </div>
+    <script>
+      // Array of products
+      const products = [
+        {
+          name: "Brown leather Jacket",
+          image: "../assets/female1.png",
+          price: "$18.99",
+          description: "A stylish brown leather jacket.",
+          id: 1 // Add unique ID to each product for linking
+        },
+        {
+          name: "Abercrombie Hoodie",
+          image: "../assets/female2.png",
+          price: "$32.50",
+          description: "A cozy hoodie for all seasons.",
+          id: 2
+        },
+        {
+          name: "Green Sweater",
+          image: "../assets/female3.png",
+          price: "$24.99",
+          description: "A vibrant green sweater.",
+          id: 3
+        },
+        {
+          name: "Grey Off Shoulder Top",
+          image: "../assets/female4.png",
+          price: "$29.99",
+          description: "Casual and chic off-shoulder top.",
+          id: 4
+        },
+        {
+          name: "Grey Long Sleeve with Buttons",
+          image: "../assets/female5.png",
+          price: "$15.99",
+          description: "Comfortable grey long sleeve with stylish buttons.",
+          id: 5
+        },
+        {
+          name: "Ralph Lauren Navy American Flag Knitted Sweater",
+          image: "../assets/female6.png",
+          price: "$21.00",
+          description: "Classic knitted sweater with American flag design.",
+          id: 6
+        },
+        {
+          name: "Nike Sportswear Club Girls Oversized Joggers",
+          image: "../assets/female7.png",
+          price: "$35.00",
+          description: "Stylish and comfortable oversized joggers.",
+          id: 7
+        },
+        {
+          name: "North Face Women's Evolution Wide Leg Sweatpants",
+          image: "../assets/female8.png",
+          price: "$28.50",
+          description: "Versatile and comfortable wide-leg sweatpants.",
+          id: 8
+        }
+      ];
 
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female3.png" class="img-fluid" alt="Green Sweater">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">Green Sweater</h5>
-      <p><strong>$24.99</strong></p>
-    </div>
+      // Function to generate product cards
+      function loadProducts() {
+        const productList = document.getElementById("product-list");
 
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female4.png" class="img-fluid" alt="Grey Off Shoulder Top">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">Grey Off Shoulder Top</h5>
-      <p><strong>$29.99</strong></p>
-    </div>
+        products.forEach(product => {
+          const productCard = document.createElement("div");
+          productCard.classList.add("col-md-3", "mb-4", "text-center");
 
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female5.png" class="img-fluid" alt="Grey Long Sleeve with Buttons">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">Grey Long Sleeve with Buttons</h5>
-      <p><strong>$15.99</strong></p>
-    </div>
+          productCard.innerHTML = `
+            <a href="product.html?id=${product.id}">
+              <img src="${product.image}" class="img-fluid" alt="${product.name}">
+            </a>
+            <div class="d-flex justify-content-center align-items-center mt-2">
+              <h5 class="mb-0">${product.name}</h5>
+            </div>
+            <p><strong>${product.price}</strong></p>
+          `;
 
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female6.png" class="img-fluid" alt="Ralph Lauren Navy American Flag Knitted Sweater">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">Ralph Lauren Navy American Flag Knitted Sweater</h5>
-      <p><strong>$21.00</strong></p>
-    </div>
+          productList.appendChild(productCard);
+        });
+      }
 
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female7.png" class="img-fluid" alt="Nike Sportswear Club Girls Oversized Joggers">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">Nike Sportswear Club Girls Oversized Joggers</h5>
-      <p><strong>$35.00</strong></p>
-    </div>
-
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female8.png" class="img-fluid" alt="North Face Women's Evolution Wide Leg Sweatpants">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">North Face Women's Evolution Wide Leg Sweatpants</h5>
-      <p><strong>$28.50</strong></p>
-    </div>
-  </div>
-</div>
-
-<style>
-.product-image-container {
-  position: relative;  /* Make the image container position relative */
-  display: inline-block; /* Ensure the icon is positioned relative to the image */
-}
-
-.product-cart {
-  position: absolute;
-  top: 10px; /* Adjust the distance from the top */
-  right: 5px; /* Adjust the distance from the right */
-  font-size: 20px;
-  color: #000;
-  cursor: pointer;
-}
-
-h5 {
-  margin-top: 10px;  /* Add spacing between the image and the product name */
-}
-
-p {
-  margin-top: 5px;  /* Add spacing between the product name and price */
-}
-</style>
-
-
-
-
-
-
+      // Call the function to load products when the page is ready
+      loadProducts();
+    </script>
 
     <!-- Footer -->
     <footer class="py-4">
@@ -236,7 +203,6 @@ p {
         </p>
       </div>
     </footer>
-
 
     <!-- Bootstrap JS and dependencies (for toggling the navbar) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
