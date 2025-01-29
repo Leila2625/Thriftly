@@ -97,8 +97,34 @@
           <h2 id="productName">Product Name</h2>
           <p id="productDescription">Product Description</p>
           <p><strong id="productPrice">Price</strong></p>
-           <!-- Add to Cart Button -->
-           <button class="btn" id="addToCartButton" style="background-color: #A9C191; color: white;">Add to Cart</button>
+
+  <!-- Size Dropdown -->
+  <div class="mb-3">
+    <select class="form-select" style="width: 200px;" id="sizeSelect">
+      <option value="" selected disabled>Select Size</option>
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+    </select>
+  </div>
+
+    <!-- Quantity Selector -->
+    <div class="mb-3 d-flex align-items-center" style="width: 200px;">
+        <button class="btn btn-outline-secondary" onclick="decrementQuantity()">-</button>
+        <input type="number" id="quantity" class="form-control mx-2 text-center" value="1" readonly style="width: 60px;">
+        <button class="btn btn-outline-secondary" onclick="incrementQuantity()">+</button>
+      </div>
+
+      <!-- Add to Cart and Wishlist Buttons -->
+<div class="d-flex gap-2 mb-3">
+    <button class="btn" id="addToCartButton" style="background-color: #A9C191; color: white;">Add to Cart</button>
+    <button class="btn" id="addToWishlistButton" style="background-color: white; color: #A9C191; border: 1px solid #A9C191;">
+      <i class="bi bi-heart"></i> Add to Wishlist
+    </button>
+  </div>
+
         </a>
         </div>
       </div>
@@ -186,6 +212,21 @@
         // Handle error if product is not found
         document.getElementById('productName').textContent = 'Product Not Found';
       }
+
+      function incrementQuantity() {
+    const quantityInput = document.getElementById('quantity');
+    const currentValue = parseInt(quantityInput.value);
+    quantityInput.value = currentValue + 1;
+  }
+
+  function decrementQuantity() {
+    const quantityInput = document.getElementById('quantity');
+    const currentValue = parseInt(quantityInput.value);
+    if (currentValue > 1) {
+      quantityInput.value = currentValue - 1;
+    }
+  }
+
     </script>
   </body>
 </html>
