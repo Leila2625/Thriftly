@@ -74,15 +74,12 @@
           <!-- Thrifted and Upcycled Links -->
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link" href="../pages/women.html"
+              <a class="nav-link underlined" href="../pages/women.html"
                 ><strong>THRIFT</strong></a
               >
             </li>
             <li class="nav-item">
-              <a
-                class="nav-link underlined"
-                href="../pages/women_upcycled.html"
-              >
+              <a class="nav-link" href="../pages/women_upcycled.html">
                 <strong>UPCYCLED</strong></a
               >
             </li>
@@ -91,125 +88,97 @@
       </nav>
     </div>
 
-
-<!-- Product Listings Section -->
-<div class="container mt-5">
-  <div class="row">
-    <!-- Thrift Item 1 -->
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female9.png" class="img-fluid" alt="Old Navy Leggings">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">Old Navy Leggings</h5>
-      <p><strong>$18.99</strong></p>
+    <!-- Product Listings Section -->
+    <div class="container mt-5">
+      <div class="row" id="product-list"></div>
     </div>
 
-    <!-- Repeat for other items -->
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female10.png" class="img-fluid" alt="Adidas Sports Shorts">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">Adidas Sports Shorts</h5>
-      <p><strong>$32.50</strong></p>
-    </div>
+    <script>
+      // Array of products
+      const products = [
+        {
+          name: "Old Navy Leggings",
+          image: "../assets/female9.png",
+          price: "$18.99",
+          description: "A stylish brown leather jacket.",
+          id: 9 // Add unique ID to each product for linking
+        },
+        {
+          name: "Adidas Sports Shorts",
+          image: "../assets/female10.png",
+          price: "$32.50",
+          description: "A cozy hoodie for all seasons.",
+          id: 10
+        },
+        {
+          name: "Abercrombie Shorts ",
+          image: "../assets/female11.png",
+          price: "$24.99",
+          description: "A vibrant green sweater.",
+          id: 11
+        },
+        {
+          name: "Zara Grey Straight Leg Pants",
+          image: "../assets/female12.png",
+          price: "$29.99",
+          description: "Casual and chic off-shoulder top.",
+          id: 12
+        },
+        {
+          name: "Tilly's Blue Jeans",
+          image: "../assets/female13.png",
+          price: "$15.99",
+          description: "Comfortable grey long sleeve with stylish buttons.",
+          id: 13
+        },
+        {
+          name: "Blueberry T-Shirt",
+          image: "../assets/female14.png",
+          price: "$21.00",
+          description: "Classic knitted sweater with American flag design.",
+          id: 14
+        },
+        {
+          name: "Disco T-Shirt",
+          image: "../assets/female15.png",
+          price: "$35.00",
+          description: "Stylish and comfortable oversized joggers.",
+          id: 15
+        },
+        {
+          name: "White Ribbon T-Shirt",
+          image: "../assets/female16.png",
+          price: "$28.50",
+          description: "Versatile and comfortable wide-leg sweatpants.",
+          id: 16
+        }
+      ];
 
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female11.png" class="img-fluid" alt="Abercrombie Shorts">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">Abercrombie Shorts</h5>
-      <p><strong>$24.99</strong></p>
-    </div>
+      // Function to generate product cards
+      function loadProducts() {
+        const productList = document.getElementById("product-list");
 
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female12.png" class="img-fluid" alt="Zara Grey Straight Leg Pants">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">Zara Grey Straight Leg Pants</h5>
-      <p><strong>$29.99</strong></p>
-    </div>
+        products.forEach(product => {
+          const productCard = document.createElement("div");
+          productCard.classList.add("col-md-3", "mb-4", "text-center");
 
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female13.png" class="img-fluid" alt="Tilly's Blue Jeans">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">Tilly's Blue Jeans</h5>
-      <p><strong>$15.99</strong></p>
-    </div>
+          productCard.innerHTML = `
+            <a href="product.html?id=${product.id}">
+              <img src="${product.image}" class="img-fluid" alt="${product.name}">
+            </a>
+            <div class="d-flex justify-content-center align-items-center mt-2">
+              <h5 class="mb-0">${product.name}</h5>
+            </div>
+            <p><strong>${product.price}</strong></p>
+          `;
 
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female14.png" class="img-fluid" alt="Blueberry T-Shirt">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">Blueberry T-Shirt</h5>
-      <p><strong>$21.00</strong></p>
-    </div>
+          productList.appendChild(productCard);
+        });
+      }
 
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female15.png" class="img-fluid" alt="Disco T-Shirt">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">Disco T-Shirt</h5>
-      <p><strong>$35.00</strong></p>
-    </div>
-
-    <div class="col-md-3 mb-4 text-center">
-      <div class="product-image-container">
-        <img src="../assets/female16.png" class="img-fluid" alt="White Ribbon T-Shirt">
-        <a href="#" class="shop-icon product-cart">
-          <i class="bi bi-cart3 shopping-cart"></i>
-        </a>
-      </div>
-      <h5 class="mb-0">White Ribbon T-Shirt</h5>
-      <p><strong>$28.50</strong></p>
-    </div>
-  </div>
-</div>
-
-<style>
-.product-image-container {
-  position: relative;  /* Make the image container position relative */
-  display: inline-block; /* Ensure the icon is positioned relative to the image */
-}
-
-.product-cart {
-  position: absolute;
-  top: 10px; /* Adjust the distance from the top */
-  right: 5px; /* Adjust the distance from the right */
-  font-size: 20px;
-  color: #000;
-  cursor: pointer;
-}
-
-h5 {
-  margin-top: 10px;  /* Add spacing between the image and the product name */
-}
-
-p {
-  margin-top: 5px;  /* Add spacing between the product name and price */
-}
-</style>
+      // Call the function to load products when the page is ready
+      loadProducts();
+    </script>
 
     <!-- Footer -->
     <footer class="py-4">
