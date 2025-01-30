@@ -153,7 +153,11 @@ ul.list-inline {
   color: rgb(0, 0, 0);
   border-radius: 10px;
 }
-
+#checkoutButton {
+  background-color: #afcea0;
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+}
 .sort-button:hover {
   background-color: #9aa191;
 }
@@ -194,7 +198,9 @@ ul.list-inline {
 .cart-subtotal .d-flex > .d-flex {
   margin-bottom: 10px; /* Add spacing between the blocks */
 }
-
+.hidden {
+  display: none;
+}
 /* Flexbox container for the image and text */
 
 /* Green rectangle section */

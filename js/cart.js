@@ -1,31 +1,22 @@
-// Get the cart from localStorage
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
-const cartSection = document.getElementById("cartSection");
-const checkoutForm = document.getElementById("checkoutForm");
 const checkoutButton = document.getElementById("checkoutButton");
-
+const shoppingCart = document.getElementById("shoppingCart");
 // Hide the checkout form and cart section by default
-checkoutForm.style.display = "none";
-checkoutButton.addEventListener("click", () => {
-  // Hide cart and show checkout form
-  cartSection.style.display = "none";
-  checkoutForm.style.display = "block";
-
-  // Update the total in the checkout form
-  const checkoutTotal = document.getElementById("checkoutTotal");
-  checkoutTotal.innerHTML = `<strong>$${totalCalculatedPrice.toFixed(
-    2
-  )}</strong>`;
-});
+let storedPrice = 0;
 // Reference to the cart container and total price element
 const cartItemsContainer = document.getElementById("cartItems");
+const cartItemsEmpty = document.getElementById("cartItemsEmpty");
 const totalPriceElement = document.getElementById("totalPrice");
 const totalCPriceElement = document.getElementById("totalCalculatedPrice");
 // Check if the cart is empty
+
 if (cart.length === 0) {
-  cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+  cartItemsEmpty.innerHTML = "<p>Your cart is empty.</p>";
+  checkoutButton.classList.add("hidden"); // Hide
+  shoppingCart.classList.add("hidden");
 } else {
   // Generate the cart items dynamically
+  checkoutButton.classList.remove("hidden"); // Unhide
   cartItemsContainer.innerHTML = cart
     .map((item) => {
       // Parse the price to remove the $ and convert to float
@@ -57,12 +48,13 @@ if (cart.length === 0) {
       acc + parseFloat(item.price.replace("$", "")) * item.quantity,
     0
   );
+
   let totalCalculatedPrice = totalPrice * 1.065 + 9.99;
   totalCPriceElement.innerHTML = `<strong>$${totalCalculatedPrice.toFixed(
     2
   )}</strong>`;
   totalPriceElement.innerHTML = `$${totalPrice.toFixed(2)}`;
-
+  storedPrice = totalPrice * 1.065 + 9.99;
   // Add remove item functionality using event delegation
   // Add remove item functionality using event delegation
   cartItemsContainer.addEventListener("click", (event) => {
@@ -85,5 +77,8 @@ if (cart.length === 0) {
     }
   });
 }
-
+checkoutButton.addEventListener("click", () => {
+  window.location.href = "../pages/cart2.html";
+});
 // Function to add item to the cart
+localStorage.setItem("storedPrice", storedPrice);

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Thriftly</title>
+    <title>Document</title>
     <!-- Bootstrap CSS Link -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -16,8 +16,9 @@
     />
   </head>
   <body>
+    <!-- Main Content Area -->
     <div class="content">
-      <nav class="navbar navbar-expand-lg navbar-light py-3 main-nav">
+      <nav class="navbar navbar-expand-lg py-3 main-nav">
         <div class="container-fluid">
           <!-- Brand name aligned to the left -->
           <img src="../assets/logo.png" alt="Logo" class="logo" />
@@ -40,9 +41,7 @@
           <div class="collapse navbar-collapse ms-auto" id="navbarNav">
             <ul class="navbar-nav mx-auto">
               <li class="nav-item me-3">
-                <a class="nav-link active" href="../pages/index.html"
-                  ><strong>HOME</strong></a
-                >
+                <a class="nav-link" href="../pages/index.html">HOME</a>
               </li>
               <li class="nav-item me-3">
                 <a class="nav-link" href="../pages/women.html">WOMEN</a>
@@ -55,12 +54,11 @@
               </li>
             </ul>
           </div>
-
           <div class="d-flex align-items-center justify-content-end">
             <a href="../pages/account.html" class="account-icon">
               <i class="bi bi-person"></i>
             </a>
-            <a href="../pages/wishlist.html" class="wishlist-icon">
+            <a href="#" class="wishlist-icon">
               <i class="bi bi-heart"></i>
             </a>
             <a href="../pages/cart.html" class="shop-icon">
@@ -69,78 +67,25 @@
           </div>
         </div>
       </nav>
-
-      <div class="container my-5">
-        <div class="row">
-          <!-- First large picture -->
-          <div class="col-md-4">
-            <a href="../pages/men_upcycled.html">
-              <img
-                src="../assets/upcycled.jpg"
-                alt="Upcycled Clothing"
-                class="img-fluid rounded mb-3"
-              />
-            </a>
-          </div>
-          <!-- Second large picture -->
-          <div class="col-md-4">
-            <a href="../pages/men.html">
-              <img
-                src="../assets/thrift.jpg"
-                alt="Thrift Clothing"
-                class="img-fluid rounded mb-3"
-              />
-            </a>
-          </div>
-          <!-- Two smaller pictures stacked vertically -->
-          <div class="col-md-4 d-flex flex-column">
-            <a href="../pages/on_sale.html">
-              <img
-                src="../assets/sale.jpg"
-                alt="On Sale"
-                class="img-fluid rounded mb-3"
-              />
-            </a>
-            <a href="../pages/new_additions.html">
-              <img
-                src="../assets/new.jpg"
-                alt="New Additions"
-                class="img-fluid rounded"
-              />
-            </a>
-          </div>
+      <nav class="navbar navbar-expand py-0 second-nav">
+        <div class="container-fluid justify-content-center">
+          <!-- Thrifted and Upcycled Links -->
+          <ul class="navbar-nav">
+            <h5 class="nav-link2 mt-1"><strong>ON SALE</strong></h5>
+          </ul>
         </div>
-      </div>
-      <div
-        class="container-fluid my-5 p-4"
-        style="background-color: #b2ac88; border-radius: 8px"
-      >
-        <div class="row">
-          <div class="col-12">
-            <h2><strong>Why shop with us?</strong></h2>
-          </div>
-        </div>
-
-        <!-- Full-Width Paragraph -->
-        <div class="row mt-1">
-          <div class="col-12">
-            <p class="fs-5">
-              When you shop with us, you're embracing sustainability and
-              individuality. Our collection of upcycled and thrifted clothing
-              not only reduces waste but also supports ethical fashion
-              practices. Each piece tells a unique story, allowing you to
-              express your style while making a positive impact on the
-              environment. By choosing our selections, you join a community that
-              values creativity, originality, and conscious consumerism.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="container mt-5">
-        <div class="row" id="product-list"></div>
-      </div>
+      </nav>
     </div>
+
+    <!-- Product Listings Section -->
+    <div class="container mt-4">
+      <button id="sortButton" class="sort-button mb-2">
+        Sort by Price<span id="arrow">&uarr;&darr;</span>
+        <!-- Down arrow initially -->
+      </button>
+      <div class="row" id="product-list"></div>
+    </div>
+
     <!-- Footer -->
     <footer class="py-4">
       <div class="container">
@@ -167,6 +112,6 @@
 
     <!-- Bootstrap JS and dependencies (for toggling the navbar) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/index.js"></script>
+    <script src="../js/on_sale.js"></script>
   </body>
 </html>
