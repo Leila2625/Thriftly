@@ -1,4 +1,4 @@
-// Array of products
+// products
 const productData = [
   {
     id: 1,
@@ -259,15 +259,15 @@ const productData = [
   },
 ];
 
-// Get the product id from the URL
+// Get the product id
 const urlParams = new URLSearchParams(window.location.search);
 const productId = urlParams.get("id");
 
-// Find the corresponding product based on the id
+// Find product based on the id
 const product = productData.find((item) => item.id == productId);
 
 if (product) {
-  // Populate the product details on the page
+  // get product details on the page
   document.getElementById("productImage").src = product.image;
   document.getElementById("productType").textContent = product.type;
   document.getElementById("productName").textContent = product.name;
@@ -275,10 +275,10 @@ if (product) {
     product.description;
   document.getElementById("productPrice").textContent = product.price;
 } else {
-  // Handle error if product is not found
+  // errors
   document.getElementById("productName").textContent = "Product Not Found";
 }
-
+//add quantity of products
 function incrementQuantity() {
   const quantityInput = document.getElementById("quantity");
   const currentValue = parseInt(quantityInput.value);
@@ -294,19 +294,20 @@ function decrementQuantity() {
     quantityInput.value = currentValue - 1;
   }
 }
+//add to cart
 function addToCart() {
   const size = document.getElementById("sizeSelect").value;
   const quantity = parseInt(document.getElementById("quantity").value);
-
+  //require size
   if (!size) {
     alert("Please select a size.");
     return;
   }
 
-  // Get the cart from localStorage or initialize it
+  // Get the cart from localStorage
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Add the current product to the cart
+  // Add product to the cart
   const cartItem = {
     id: product.id,
     name: product.name,
@@ -318,11 +319,10 @@ function addToCart() {
 
   cart.push(cartItem);
 
-  // Save the updated cart back to localStorage
+  // Save updated cart to localStorage
   localStorage.setItem("cart", JSON.stringify(cart));
 
   alert(`${product.name} added to cart!`);
 }
 
-// Attach the Add to Cart button handler
 document.getElementById("addToCartButton").addEventListener("click", addToCart);

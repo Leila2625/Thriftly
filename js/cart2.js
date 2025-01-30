@@ -1,3 +1,4 @@
+//validate form
 function validateForm(event) {
   let valid = true;
   event.preventDefault();
@@ -6,7 +7,7 @@ function validateForm(event) {
     error.style.display = "none";
   });
 
-  // First Name Validation
+  // First Name
   const firstName = document.getElementById("firstName").value;
   const firstNameRegex = /^[A-Za-z\s]+$/;
   if (!firstName.match(firstNameRegex)) {
@@ -14,7 +15,7 @@ function validateForm(event) {
     valid = false;
   }
 
-  // Last Name Validation
+  // Last Name
   const lastName = document.getElementById("lastName").value;
   const lastNameRegex = /^[A-Za-z\s]+$/;
   if (!lastName.match(lastNameRegex)) {
@@ -22,7 +23,7 @@ function validateForm(event) {
     valid = false;
   }
 
-  // Email Validation
+  // Email
   const email = document.getElementById("email").value;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!email.match(emailRegex)) {
@@ -30,7 +31,7 @@ function validateForm(event) {
     valid = false;
   }
 
-  // Address Validation
+  // Address
   const address = document.getElementById("address").value;
   const addressRegex = /^[A-Za-z0-9\s,.-]+$/;
   if (!address.match(addressRegex)) {
@@ -38,7 +39,7 @@ function validateForm(event) {
     valid = false;
   }
 
-  // Zip Code Validation
+  // Zip Code
   const zip = document.getElementById("zip").value;
   const zipRegex = /^[0-9]+$/;
   if (!zip.match(zipRegex)) {
@@ -46,7 +47,7 @@ function validateForm(event) {
     valid = false;
   }
 
-  // State Validation
+  // State
   const state = document.getElementById("state").value;
   const stateRegex = /^[A-Za-z\s]+$/;
   if (!state.match(stateRegex)) {
@@ -54,14 +55,14 @@ function validateForm(event) {
     valid = false;
   }
 
-  // Suite Validation
+  // Suite
   const suite = document.getElementById("suite").value;
   if (suite && !suite.match(/^[A-Za-z0-9\s.,-]*$/)) {
     document.getElementById("suiteError").style.display = "inline";
     valid = false;
   }
 
-  // Card Number Validation
+  // Card Number
   const cardNumber = document.getElementById("cardNumber").value;
   const cardNumberRegex = /^[0-9]+$/;
   if (!cardNumber.match(cardNumberRegex)) {
@@ -69,28 +70,28 @@ function validateForm(event) {
     valid = false;
   }
 
-  // Expiration Month Validation
+  // Expiration Month
   const expMonth = document.getElementById("expMonth").value;
   if (expMonth.length !== 2 || !expMonth.match(/^[0-9]+$/)) {
     document.getElementById("expMonthError").style.display = "inline";
     valid = false;
   }
 
-  // Expiration Year Validation
+  // Expiration Year
   const expYear = document.getElementById("expYear").value;
   if (expYear.length !== 4 || !expYear.match(/^[0-9]+$/)) {
     document.getElementById("expYearError").style.display = "inline";
     valid = false;
   }
 
-  // CVV Validation
+  // CVV
   const cvv = document.getElementById("cvv").value;
   if (!cvv.match(/^[0-9]{3,4}$/)) {
     document.getElementById("cvvError").style.display = "inline";
     valid = false;
   }
 
-  // Full Name on Card Validation
+  // Name on Card
   const cardName = document.getElementById("cardName").value;
   const cardNameRegex = /^[A-Za-z\s]+$/;
   if (!cardName.match(cardNameRegex)) {
@@ -98,12 +99,12 @@ function validateForm(event) {
     valid = false;
   }
 
-  // If form is valid, navigate to cart3.html
+  // If form valid, go to cart3.html
   if (valid) {
     window.location.href = "../pages/cart3.html";
   }
 
-  // Prevent form submission if validation fails
+  // Prevent form submission if failure
   return valid;
 }
 

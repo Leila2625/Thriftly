@@ -1,3 +1,4 @@
+//products to be used
 const products = [
   {
     name: "Black Carhartt Cargos",
@@ -33,12 +34,11 @@ const products = [
   },
 ];
 
-// Function to generate product cards
+// Function to create product cards
 function loadProducts() {
   const productList = document.getElementById("product-list");
 
   products.forEach((product) => {
-    console.log(product.image); // Log the image URL
     const productCard = document.createElement("div");
     productCard.classList.add("col-md-3", "mb-4", "text-center");
 
@@ -58,5 +58,5 @@ function loadProducts() {
   });
 }
 
-// Call the function to load products when the page is ready
+// Call function when  page is ready
 loadProducts();

@@ -1,4 +1,4 @@
-// Array of products
+// products
 const products = [
   {
     id: 1,
@@ -130,23 +130,23 @@ const products = [
     type: "Upcycled Item",
   },
 ];
+//load products
 function loadProducts() {
   const productList = document.getElementById("product-list");
 
-  // Sort the products array by price (ascending order)
+  // Sort the products by price
   const sortedProducts = products.sort((a, b) => {
-    // Remove the dollar sign and parse the price as a number
+    // Remove the dollar sign
     const priceA = parseFloat(a.price.replace("$", ""));
     const priceB = parseFloat(b.price.replace("$", ""));
     return priceA - priceB;
   });
 
-  // Clear the product list before reloading it
+  // Clear product list before reloading
   productList.innerHTML = "";
 
-  // Loop through sorted products and create the product cards
+  // Loop through sorted products
   sortedProducts.forEach((product) => {
-    console.log(product.image); // Log the image URL
     const productCard = document.createElement("div");
     productCard.classList.add("col-md-3", "mb-4", "text-center");
 
@@ -163,7 +163,7 @@ function loadProducts() {
   });
 }
 
-// Call the function to load products when the page is ready
+// Call the function when page is ready
 loadProducts();
 
 let clicked = false;
@@ -172,18 +172,17 @@ sortButton.onclick = () => {
   if (clicked === false) {
     const productList = document.getElementById("product-list");
 
-    // Sort the products array by price (ascending order)
+    // Sort the products
     const sortedProducts = products.sort((b, a) => {
-      // Remove the dollar sign and parse the price as a number
+      // Remove the dollar sign
       const priceA = parseFloat(a.price.replace("$", ""));
       const priceB = parseFloat(b.price.replace("$", ""));
       return priceA - priceB;
     });
 
-    // Clear the product list before reloading it
     productList.innerHTML = "";
 
-    // Loop through sorted products and create the product cards
+    // Loop through sorted products
     sortedProducts.forEach((product) => {
       console.log(product.image); // Log the image URL
       const productCard = document.createElement("div");

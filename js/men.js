@@ -1,3 +1,4 @@
+//products to be listed
 const products = [
   {
     name: "Grey Lee Jorts",
@@ -57,24 +58,22 @@ const products = [
   },
 ];
 
-// Function to generate product cards
+// Function to create product cards
 function loadProducts() {
   const productList = document.getElementById("product-list");
 
-  // Sort the products array by price (ascending order)
+  // Sort the products by price
   const sortedProducts = products.sort((a, b) => {
-    // Remove the dollar sign and parse the price as a number
     const priceA = parseFloat(a.price.replace("$", ""));
     const priceB = parseFloat(b.price.replace("$", ""));
     return priceA - priceB;
   });
 
-  // Clear the product list before reloading it
+  // Clear product list before reloading
   productList.innerHTML = "";
 
-  // Loop through sorted products and create the product cards
+  // Loop through products and create the cards
   sortedProducts.forEach((product) => {
-    console.log(product.image); // Log the image URL
     const productCard = document.createElement("div");
     productCard.classList.add("col-md-3", "mb-4", "text-center");
 
@@ -91,29 +90,25 @@ function loadProducts() {
   });
 }
 
-// Call the function to load products when the page is ready
+// Call the function when page is ready
 loadProducts();
-
+//function for sorting products
 let clicked = false;
 let sortButton = document.getElementById("sortButton");
 sortButton.onclick = () => {
   if (clicked === false) {
     const productList = document.getElementById("product-list");
-
-    // Sort the products array by price (ascending order)
     const sortedProducts = products.sort((b, a) => {
-      // Remove the dollar sign and parse the price as a number
+      // Remove dollar sign
       const priceA = parseFloat(a.price.replace("$", ""));
       const priceB = parseFloat(b.price.replace("$", ""));
       return priceA - priceB;
     });
 
-    // Clear the product list before reloading it
     productList.innerHTML = "";
 
-    // Loop through sorted products and create the product cards
+    // Loop again
     sortedProducts.forEach((product) => {
-      console.log(product.image); // Log the image URL
       const productCard = document.createElement("div");
       productCard.classList.add("col-md-3", "mb-4", "text-center");
 

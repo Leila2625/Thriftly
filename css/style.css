@@ -1,3 +1,4 @@
+/* general doc */
 html,
 body {
   height: 100%;
@@ -7,56 +8,10 @@ body {
   display: flex;
   flex-direction: column;
 }
-.logo {
-  height: 70px;
-  width: auto; /* Maintain aspect ratio */
-}
-.logo-account {
-  height: 100px;
-  width: auto; /* Maintain aspect ratio */
-  display: block; /* Ensures it's treated as a block-level element */
-  margin: 0 auto; /* Centers the image horizontally */
-}
 
-.content {
-  flex-grow: 1;
-}
-.collapse {
-  margin-right: 10vw; /* Shift navbar items slightly to the left */
-}
-.nav-item {
-  font-size: 1.2rem;
-}
-.main-nav {
-  background-color: #b2ac88; /* Nav bar color */
-  color: black; /* Navbar text color */
-}
-.second-nav {
-  background-color: #ced9c1; /* Nav bar color */
-  color: black; /* Navbar text color */
-}
-.underlined {
-  text-decoration: underline;
-}
 footer {
-  background-color: #b2ac88; /* Footer color */
-  color: black; /* Footer text color */
-}
-/* Ensuring text links are black */
-.navbar-nav .nav-link,
-footer a {
-  color: black; /* Override any other color styles */
-}
-.navbar-brand {
-  font-size: 3rem; /* Adjust the value as needed */
-}
-footer {
-  display: flex;
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically (if needed) */
-  text-align: center; /* Center text inside the footer */
-}
-footer {
+  background-color: #b2ac88;
+  color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -68,6 +23,47 @@ footer .container {
   width: 100%;
   max-width: none;
 }
+/* navbar, links, icons,etc */
+.logo {
+  height: 70px;
+  width: auto;
+}
+
+.logo-account {
+  height: 100px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.content {
+  flex-grow: 1;
+}
+.collapse {
+  margin-right: 10vw; /* Shift navbar items to the left */
+}
+.nav-item {
+  font-size: 1.2rem;
+}
+.main-nav {
+  background-color: #b2ac88;
+  color: black;
+}
+.second-nav {
+  background-color: #ced9c1;
+  color: black;
+}
+.underlined {
+  text-decoration: underline;
+}
+
+.navbar-nav .nav-link,
+footer a {
+  color: black;
+}
+.navbar-brand {
+  font-size: 3rem;
+}
 
 ul.list-inline {
   display: flex;
@@ -78,42 +74,41 @@ ul.list-inline {
 .list-inline-item {
   margin-right: 20px;
 }
-/* Flex container to center and space icons */
+
 .account-icon,
-.wishlist-icon,
 .shop-icon {
-  margin-right: 0.7rem; /* Adds equal space between all icons */
-  font-size: 1.8rem; /* Bigger icons */
-  color: black; /* Default icon color */
+  margin-right: 0.7rem;
+  font-size: 1.8rem;
+  color: black;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
-/* Hover effects for icons */
 .account-icon i:hover,
 .wishlist-icon i:hover,
 .shop-icon i:hover {
-  color: #555; /* Change icon color on hover */
-  transform: scale(1.1); /* Make the icon bigger on hover */
-  transition: all 0.3s ease; /* Smooth transition */
+  color: #555;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
 }
 
-/* Hover effect for nav links */
 .nav-link:hover {
-  color: #555; /* Change text color to gray on hover */
-  transform: scale(1.05); /* Make the text bigger on hover */
-  transition: all 0.3s ease; /* Smooth transition */
+  color: #555;
+  transform: scale(1.05);
+  transition: all 0.3s ease;
 }
 
-/* Ensure no extra spacing on the last icon */
 .shop-icon {
   margin-right: 2rem;
 }
 
+/* about us */
 .square {
-  max-width: 75%; /* Adjust the max width as needed */
-  height: auto; /* Maintain aspect ratio */
-  margin: 0 auto; /* Center if necessary */
+  max-width: 75%;
+  height: auto;
+  margin: 0 auto;
 }
+
+/* account interface */
 .rounded-rectangle,
 .rounded-rectangle2 {
   background-color: #ced9c1;
@@ -133,7 +128,7 @@ ul.list-inline {
   transform: scale(1.02);
 }
 .btn-success {
-  background-color: #ced9c1; /* Custom green color */
+  background-color: #ced9c1;
   border-color: #000000;
   color: #000000;
   border-radius: 30px;
@@ -141,6 +136,7 @@ ul.list-inline {
 .btn-success:hover {
   background-color: #000000;
 }
+/*cart 2 form */
 .form-control {
   border-radius: 30px;
   border-color: rgb(0, 0, 0);
@@ -148,31 +144,31 @@ ul.list-inline {
 .input-group {
   width: 65%;
 }
+/*filters */
 .sort-button {
   background-color: #ced9c1;
-  color: rgb(0, 0, 0);
-  border-radius: 10px;
-}
-#checkoutButton {
-  background-color: #afcea0;
   color: rgb(0, 0, 0);
   border-radius: 10px;
 }
 .sort-button:hover {
   background-color: #9aa191;
 }
-
 #arrow {
-  margin-left: 10px; /* Space between "Sort by Price" and the arrow */
+  margin-left: 10px;
   font-size: 18px;
   transition: transform 0.3s ease;
 }
-/* Green divider between cart items */
+/*cart checkout */
+#checkoutButton {
+  background-color: #afcea0;
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+}
+
 .border-green {
   border: 1px solid #a9c191;
 }
 
-/* Subtotal box */
 .cart-subtotal {
   background-color: #ced9c1; /* Green background */
   border-style: solid;
@@ -190,37 +186,34 @@ ul.list-inline {
 
 .cart-subtotal .d-flex {
   display: flex;
-  flex-direction: column; /* Stack the items vertically */
-  justify-content: space-around; /* Space out the items vertically */
-  align-items: center; /* Center the content horizontally */
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .cart-subtotal .d-flex > .d-flex {
-  margin-bottom: 10px; /* Add spacing between the blocks */
+  margin-bottom: 10px;
 }
 .hidden {
   display: none;
 }
-/* Flexbox container for the image and text */
 
-/* Green rectangle section */
-
-/* Footer links layout for mobile devices */
+/* mobile devices */
 @media (max-width: 768px) {
   ul.list-inline {
-    display: block; /* Stack items vertically on smaller screens */
+    display: block;
     text-align: center;
-    padding-left: 40px; /* Add some padding for better alignment */
+    padding-left: 40px;
   }
 
   .list-inline-item {
-    margin-bottom: 10px; /* Add space between items */
-    margin-right: 0; /* Remove right margin */
+    margin-bottom: 10px;
+    margin-right: 0;
   }
   .account-icon,
   .wishlist-icon,
   .shop-icon {
-    margin-right: 0.5rem; /* Adds equal space between all icons */
+    margin-right: 0.5rem;
     font-size: 1.3rem;
   }
   .our_story {
@@ -228,6 +221,6 @@ ul.list-inline {
     text-align: center;
   }
   .cart-subtotal {
-    min-height: 300px; /* Minimum height to ensure it's not too small */
+    min-height: 300px;
   }
 }

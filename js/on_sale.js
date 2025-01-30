@@ -11,7 +11,7 @@ const products = [
     image: "../assets/female/female1.png",
     price: "$18.99",
     description: "A stylish brown leather jacket.",
-    id: 1, // Add unique ID to each product for linking
+    id: 1,
   },
   {
     name: "Tilly's Blue Jeans",
@@ -25,7 +25,7 @@ const products = [
     image: "../assets/female/female9.png",
     price: "$18.99",
     description: "A stylish brown leather jacket.",
-    id: 9, // Add unique ID to each product for linking
+    id: 9,
   },
   {
     name: "Camo Cargos",
@@ -61,20 +61,19 @@ const products = [
 function loadProducts() {
   const productList = document.getElementById("product-list");
 
-  // Sort the products array by price (ascending order)
+  // Sort the products by price
   const sortedProducts = products.sort((a, b) => {
-    // Remove the dollar sign and parse the price as a number
+    // Remove the dollar sign
     const priceA = parseFloat(a.price.replace("$", ""));
     const priceB = parseFloat(b.price.replace("$", ""));
     return priceA - priceB;
   });
 
-  // Clear the product list before reloading it
+  // Clear product list before reloading
   productList.innerHTML = "";
 
-  // Loop through sorted products and create the product cards
+  // Loop through sorted products
   sortedProducts.forEach((product) => {
-    console.log(product.image); // Log the image URL
     const productCard = document.createElement("div");
     productCard.classList.add("col-md-3", "mb-4", "text-center");
 
@@ -91,7 +90,7 @@ function loadProducts() {
   });
 }
 
-// Call the function to load products when the page is ready
+// Call function to load products when page is ready
 loadProducts();
 
 let clicked = false;
@@ -100,18 +99,17 @@ sortButton.onclick = () => {
   if (clicked === false) {
     const productList = document.getElementById("product-list");
 
-    // Sort the products array by price (ascending order)
+    // Sort the products by price
     const sortedProducts = products.sort((b, a) => {
-      // Remove the dollar sign and parse the price as a number
+      // Remove the dollar sign
       const priceA = parseFloat(a.price.replace("$", ""));
       const priceB = parseFloat(b.price.replace("$", ""));
       return priceA - priceB;
     });
 
-    // Clear the product list before reloading it
     productList.innerHTML = "";
 
-    // Loop through sorted products and create the product cards
+    // Loop through sorted products
     sortedProducts.forEach((product) => {
       console.log(product.image); // Log the image URL
       const productCard = document.createElement("div");
