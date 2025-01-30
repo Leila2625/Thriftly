@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Thriftly</title>
     <!-- Bootstrap CSS Link -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
@@ -16,9 +16,8 @@
     />
   </head>
   <body>
-    <!-- Main Content Area -->
     <div class="content">
-      <nav class="navbar navbar-expand-lg py-3 main-nav">
+      <nav class="navbar navbar-expand-lg navbar-light py-3 main-nav">
         <div class="container-fluid">
           <!-- Brand name aligned to the left -->
           <img src="../assets/logo.png" alt="Logo" class="logo" />
@@ -41,21 +40,22 @@
           <div class="collapse navbar-collapse ms-auto" id="navbarNav">
             <ul class="navbar-nav mx-auto">
               <li class="nav-item me-3">
-                <a class="nav-link" href="../pages/index.html">HOME</a>
+                <a class="nav-link active" href="../pages/index.html"
+                  ><strong>HOME</strong></a
+                >
               </li>
               <li class="nav-item me-3">
                 <a class="nav-link" href="../pages/women.html">WOMEN</a>
               </li>
               <li class="nav-item me-3">
-                <a class="nav-link active" href="../pages/men.html"
-                  ><strong>MEN</strong></a
-                >
+                <a class="nav-link" href="../pages/men.html">MEN</a>
               </li>
               <li class="nav-item me-3">
                 <a class="nav-link" href="../pages/about.html">ABOUT US</a>
               </li>
             </ul>
           </div>
+
           <div class="d-flex align-items-center justify-content-end">
             <a href="../pages/account.html" class="account-icon">
               <i class="bi bi-person"></i>
@@ -69,34 +69,8 @@
           </div>
         </div>
       </nav>
-      <nav class="navbar navbar-expand py-0 second-nav">
-        <div class="container-fluid justify-content-center">
-          <!-- Thrifted and Upcycled Links -->
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="../pages/men.html"
-                ><strong>THRIFT</strong></a
-              >
-            </li>
-            <li class="nav-item">
-              <a class="nav-link underlined" href="../pages/men_upcycled.html">
-                <strong>UPCYCLED</strong></a
-              >
-            </li>
-          </ul>
-        </div>
-      </nav>
+      <h1>My Wishlist</h1>
     </div>
-
-    <!-- Product Listings Section -->
-    <div class="container mt-4">
-      <button id="sortButton" class="sort-button mb-2">
-        Sort by Price<span id="arrow">&uarr;&darr;</span>
-        <!-- Down arrow initially -->
-      </button>
-      <div class="row" id="product-list"></div>
-    </div>
-
     <!-- Footer -->
     <footer class="py-4">
       <div class="container">
@@ -123,6 +97,6 @@
 
     <!-- Bootstrap JS and dependencies (for toggling the navbar) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/men_upcycled.js"></script>
+    <script src="../js/index.js"></script>
   </body>
 </html>

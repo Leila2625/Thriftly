@@ -62,9 +62,9 @@
             <a href="#" class="wishlist-icon">
               <i class="bi bi-heart"></i>
             </a>
-            <a href="#" class="shop-icon">
-                <i class="bi bi-cart3"></i>
-              </a>
+            <a href="../pages/cart.html" class="shop-icon">
+              <i class="bi bi-cart3"></i>
+            </a>
           </div>
         </div>
       </nav>
@@ -74,10 +74,14 @@
         <div class="container-fluid justify-content-center">
           <ul class="navbar-nav">
             <li class="nav-item">
-              <a class="nav-link underlined" href="../pages/women.html"><strong>THRIFT</strong></a>
+              <a class="nav-link underlined" href="../pages/women.html"
+                ><strong>THRIFT</strong></a
+              >
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="../pages/women_upcycled.html"><strong>UPCYCLED</strong></a>
+              <a class="nav-link" href="../pages/women_upcycled.html"
+                ><strong>UPCYCLED</strong></a
+              >
             </li>
           </ul>
         </div>
@@ -88,44 +92,79 @@
     <div class="container mt-5">
       <div class="row">
         <div class="col-md-6 position-relative">
-            <a href="#" onclick="window.history.back()" class="text-decoration-none position-absolute" style="color: black; top: -30px;">
-                <i class="bi bi-arrow-left me-2"></i>Go Back
-              </a>
-          <img id="productImage" class="img-fluid" alt="Product Image">
+          <a
+            href="#"
+            onclick="window.history.back()"
+            class="text-decoration-none position-absolute"
+            style="color: black; top: -30px"
+          >
+            <i class="bi bi-arrow-left me-2"></i>Go Back
+          </a>
+          <img id="productImage" class="img-fluid" alt="Product Image" />
         </div>
         <div class="col-md-6">
+          <h5 class="fst-italic" id="productType">Product Type</h5>
           <h2 id="productName">Product Name</h2>
           <p id="productDescription">Product Description</p>
           <p><strong id="productPrice">Price</strong></p>
 
-  <!-- Size Dropdown -->
-  <div class="mb-3">
-    <select class="form-select" style="width: 200px;" id="sizeSelect">
-      <option value="" selected disabled>Select Size</option>
-      <option value="XS">XS</option>
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="XL">XL</option>
-    </select>
-  </div>
+          <!-- Size Dropdown -->
+          <div class="mb-3">
+            <select class="form-select" style="width: 200px" id="sizeSelect">
+              <option value="" selected disabled>Select Size</option>
+              <option value="XS">XS</option>
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+            </select>
+          </div>
 
-    <!-- Quantity Selector -->
-    <div class="mb-3 d-flex align-items-center" style="width: 200px;">
-        <button class="btn btn-outline-secondary" onclick="decrementQuantity()">-</button>
-        <input type="number" id="quantity" class="form-control mx-2 text-center" value="1" readonly style="width: 60px;">
-        <button class="btn btn-outline-secondary" onclick="incrementQuantity()">+</button>
-      </div>
+          <!-- Quantity Selector -->
+          <div class="mb-3 d-flex align-items-center" style="width: 200px">
+            <button
+              class="btn btn-outline-secondary"
+              onclick="decrementQuantity()"
+            >
+              -
+            </button>
+            <input
+              type="number"
+              id="quantity"
+              class="form-control mx-2 text-center"
+              value="1"
+              readonly
+              style="width: 60px"
+            />
+            <button
+              class="btn btn-outline-secondary"
+              onclick="incrementQuantity()"
+            >
+              +
+            </button>
+          </div>
 
-      <!-- Add to Cart and Wishlist Buttons -->
-<div class="d-flex gap-2 mb-3">
-    <button class="btn" id="addToCartButton" style="background-color: #A9C191; color: white;">Add to Cart</button>
-    <button class="btn" id="addToWishlistButton" style="background-color: white; color: #A9C191; border: 1px solid #A9C191;">
-      <i class="bi bi-heart"></i> Add to Wishlist
-    </button>
-  </div>
-
-        </a>
+          <!-- Add to Cart and Wishlist Buttons -->
+          <div class="d-flex gap-2 mb-3">
+            <button
+              class="btn"
+              id="addToCartButton"
+              style="background-color: #a9c191; color: white"
+            >
+              Add to Cart
+            </button>
+            <button
+              class="btn"
+              id="addToWishlistButton"
+              style="
+                background-color: white;
+                color: #a9c191;
+                border: 1px solid #a9c191;
+              "
+            >
+              <i class="bi bi-heart"></i> Add to Wishlist
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -156,77 +195,6 @@
     <!-- Bootstrap JS and dependencies (for toggling the navbar) -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script>
-      // Array of products
-      const productData = [
-    {id: 1, name: "Brown leather Jacket", description: "A stylish brown leather jacket.", price: "$18.99", image: "../assets/female1.png"},
-    {id: 2, name: "Abercrombie Hoodie", description: "Cozy and stylish hoodie.", price: "$32.50", image: "../assets/female2.png"},
-    {id: 3, name: "Green Sweater", description: "Comfortable green sweater.", price: "$24.99", image: "../assets/female3.png"},
-    {id: 4, name: "Grey Off Shoulder Top", description: "Trendy grey off-shoulder top.", price: "$29.99", image: "../assets/female4.png"},
-    {id: 5, name: "Grey Long Sleeve with Buttons", description: "Comfortable grey long sleeve with stylish buttons.", price: "$15.99", image: "../assets/female5.png"},
-    {id: 6, name: "Ralph Lauren Navy American Flag Knitted Sweater", description: "Classic knitted sweater with American flag design.", price: "$21.00", image: "../assets/female6.png"},
-    {id: 7, name: "Nike Sportswear Club Girls Oversized Joggers", description: "Stylish and comfortable oversized joggers.", price: "$35.00", image: "../assets/female7.png"},
-    {id: 8, name: "North Face Women's Evolution Wide Leg Sweatpants", description: "Versatile and comfortable wide-leg sweatpants.", price: "$28.50", image: "../assets/female8.png"},
-    {id: 9, name: "Old Navy Leggings", description: "Comfy black leggings with a stretchy fit.", price: "$18.99", image: "../assets/female9.png"},
-    {id: 10, name: "Adidas Sports Shorts", description: "Lightweight sports shorts perfect for active days.", price: "$32.50", image: "../assets/female10.png"},
-    {id: 11, name: "Abercrombie Shorts", description: "Casual and comfy shorts for warm weather.", price: "$24.99", image: "../assets/female11.png"},
-    {id: 12, name: "Zara Grey Straight Leg Pants", description: "Sleek, grey straight-leg pants for a polished look.", price: "$29.99", image: "../assets/female12.png"},
-    {id: 13, name: "Tilly's Blue Jeans", description: "Classic blue jeans with a comfortable fit.", price: "$15.99", image: "../assets/female13.png"},
-    {id: 14, name: "Blueberry T-Shirt", description: "Soft cotton T-shirt in a rich blueberry shade.", price: "$21.00", image: "../assets/female14.png"},
-    {id: 15, name: "Disco T-Shirt", description: "Fun and bold T-shirt with a retro disco print.", price: "$35.00", image: "../assets/female15.png"},
-    {id: 16, name: "White Ribbon T-Shirt", description: "A simple, elegant white T-shirt with a ribbon detail.", price: "$28.50", image: "../assets/female16.png"},
-    {id: 17, name: "Grey Lee Jorts", description: "Classic grey jorts with a timeless look.", price: "$18.99", image: "../assets/male1.png"},
-    {id: 18, name: "Blue Lee Jorts", description: "Stylish blue jorts perfect for any casual outing.", price: "$32.50", image: "../assets/male2.png"},
-    {id: 19, name: "Wrangler Carpenter Jorts", description: "Durable carpenter jorts from Wrangler.", price: "$24.99", image: "../assets/male3.png"},
-    {id: 20, name: "Light Blue Jorts", description: "Light blue jorts that offer comfort and style.", price: "$29.99", image: "../assets/male4.png"},
-    {id: 21, name: "Camo Cargos", description: "Camo-patterned cargos for outdoor adventures.", price: "$15.99", image: "../assets/male5.png"},
-    {id: 22, name: "Black Carhartt Cargos", description: "Reliable black cargos from Carhartt.", price: "$21.00", image: "../assets/male6.png"},
-    {id: 23, name: "Oversized Baggy Blue Jeans", description: "Comfortable oversized baggy blue jeans.", price: "$35.00", image: "../assets/male7.png"},
-    {id: 24, name: "Oversized Grey Distressed Jeans", description: "Stylish oversized grey distressed jeans.", price: "$28.50", image: "../assets/male8.png"},
-    {id: 25, name: "Black Baggy Jeans", description: "Classic black baggy jeans with a laid-back style.", price: "$18.99", image: "../assets/male9.png"},
-    {id: 26, name: "Mouth T-Shirt", description: "Graphic T-shirt featuring a mouth print.", price: "$32.50", image: "../assets/male10.png"},
-    {id: 27, name: "Frank Ocean T-Shirt", description: "T-shirt with a classic Frank Ocean print.", price: "$24.99", image: "../assets/male11.png"},
-    {id: 28, name: "Seven Ball T-Shirt", description: "Stylish T-shirt with a bold seven-ball design.", price: "$29.99", image: "../assets/male12.png"},
-    {id: 29, name: "White Nike T-Shirt", description: "Simple white T-shirt with a Nike logo.", price: "$15.99", image: "../assets/male13.png"},
-    {id: 30, name: "White Car T-Shirt", description: "White T-shirt featuring a classic car print.", price: "$21.00", image: "../assets/male14.png"},
-    {id: 31, name: "Grey T-Shirt", description: "Basic grey T-shirt, versatile and comfortable.", price: "$35.00", image: "../assets/male15.png"},
-    {id: 32, name: "Navy Blue Carhartt Jacket", description: "Navy blue jacket from Carhartt, perfect for layering.", price: "$28.50", image: "../assets/male16.png"}
-];
-
-
-
-      // Get the product id from the URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const productId = urlParams.get('id');
-
-      // Find the corresponding product based on the id
-      const product = productData.find(item => item.id == productId);
-
-      if (product) {
-        // Populate the product details on the page
-        document.getElementById('productImage').src = product.image;
-        document.getElementById('productName').textContent = product.name;
-        document.getElementById('productDescription').textContent = product.description;
-        document.getElementById('productPrice').textContent = product.price;
-      } else {
-        // Handle error if product is not found
-        document.getElementById('productName').textContent = 'Product Not Found';
-      }
-
-      function incrementQuantity() {
-    const quantityInput = document.getElementById('quantity');
-    const currentValue = parseInt(quantityInput.value);
-    quantityInput.value = currentValue + 1;
-  }
-
-  function decrementQuantity() {
-    const quantityInput = document.getElementById('quantity');
-    const currentValue = parseInt(quantityInput.value);
-    if (currentValue > 1) {
-      quantityInput.value = currentValue - 1;
-    }
-  }
-
-    </script>
+    <script src="../js/product.js"></script>
   </body>
 </html>

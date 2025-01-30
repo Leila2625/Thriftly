@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Bootstrap CSS Link -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="../css/style.css" rel="stylesheet" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Main Content Area -->
+    <div class="content">
+      <nav class="navbar navbar-expand-lg py-3 main-nav">
+        <div class="container-fluid">
+          <!-- Brand name aligned to the left -->
+          <img src="../assets/logo.png" alt="Logo" class="logo" />
+          <a class="navbar-brand" href="#"><strong>THRIFTLY</strong></a>
+
+          <!-- Toggler button for small screens -->
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- Navbar content, centered on larger screens -->
+          <div class="collapse navbar-collapse ms-auto" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+              <li class="nav-item me-3">
+                <a class="nav-link" href="../pages/index.html">HOME</a>
+              </li>
+              <li class="nav-item me-3">
+                <a class="nav-link" href="../pages/women.html">WOMEN</a>
+              </li>
+              <li class="nav-item me-3">
+                <a class="nav-link" href="../pages/men.html">MEN</a>
+              </li>
+              <li class="nav-item me-3">
+                <a class="nav-link" href="../pages/about.html">ABOUT US</a>
+              </li>
+            </ul>
+          </div>
+          <div class="d-flex align-items-center justify-content-end">
+            <a href="../pages/account.html" class="account-icon">
+              <i class="bi bi-person"></i>
+            </a>
+            <a href="#" class="wishlist-icon">
+              <i class="bi bi-heart"></i>
+            </a>
+            <a href="#" class="shop-icon">
+              <i class="bi bi-cart3"></i>
+            </a>
+          </div>
+        </div>
+      </nav>
+      <div class="container mt-5">
+        <h2>Shopping Cart</h2>
+
+        <!-- Cart Items -->
+        <div id="cartSection" class="row">
+          <div class="col-md-9">
+            <div id="cartItems"></div>
+          </div>
+          <div class="col-md-3 mb-4">
+            <div class="cart-subtotal p-3">
+              <h4>Order Summary</h4>
+              <div class="d-flex">
+                <div class="d-flex flex-column">
+                  <h5>Subtotal:</h5>
+                  <div id="totalPrice">$0.00</div>
+                </div>
+                <div class="d-flex flex-column">
+                  <h5>Shipping:</h5>
+                  <p>(Standard Shipping)</p>
+                  <div id="totalShipping">$9.99</div>
+                </div>
+                <div class="d-flex flex-column">
+                  <h4>Total:</h4>
+                  <p>(With tax and shipping included)</p>
+                  <div id="totalCalculatedPrice"><strong>$0.00</strong></div>
+                </div>
+                <div class="d-flex flex-column">
+                  <button id="checkoutButton" class="checkoutButton">
+                    Checkout Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Checkout Form (Hidden initially) -->
+        <!-- Checkout Form (Hidden initially) -->
+        <div
+          id="checkoutForm"
+          class="row justify-content-center"
+          style="display: none"
+        >
+          <div class="col-md-6">
+            <!-- Adjusted column width -->
+            <h2>Checkout</h2>
+            <form id="checkoutFormContent" class="checkoutInputs">
+              <div class="mb-3">
+                <label for="firstName" class="form-label">First Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="firstName"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="lastName"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" required />
+              </div>
+              <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" required />
+              </div>
+              <div class="mb-3">
+                <label for="city" class="form-label">City</label>
+                <input type="text" class="form-control" id="city" required />
+              </div>
+              <div class="mb-3">
+                <label for="zip" class="form-label">Zip Code</label>
+                <input type="text" class="form-control" id="zip" required />
+              </div>
+              <div class="mb-3">
+                <label for="country" class="form-label">Country</label>
+                <input type="text" class="form-control" id="country" required />
+              </div>
+              <h4>Payment Information</h4>
+              <div class="mb-3">
+                <label for="creditCardNumber" class="form-label"
+                  >Credit Card Number</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="creditCardNumber"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="expiryDate" class="form-label"
+                  >Expiration Date</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="expiryDate"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="cvv" class="form-label">CVV</label>
+                <input type="text" class="form-control" id="cvv" required />
+              </div>
+              <div class="d-flex flex-column align-items-end">
+                <h4>Total:</h4>
+                <div id="checkoutTotal" class="mb-3">
+                  <strong>$0.00</strong>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success">
+                Submit Order
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checkout Form (Hidden initially) -->
+    <div
+      id="checkoutForm"
+      class="row justify-content-center"
+      style="display: none"
+    >
+      <!-- Change col-md-10 to col-md-6 for better centering -->
+      <div class="col-md-10">
+        <h2>Checkout</h2>
+        <form id="checkoutFormContent">
+          <div class="mb-3">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" id="firstName" required />
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" required />
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" required />
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <input type="text" class="form-control" id="address" required />
+          </div>
+          <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" id="city" required />
+          </div>
+          <div class="mb-3">
+            <label for="zip" class="form-label">Zip Code</label>
+            <input type="text" class="form-control" id="zip" required />
+          </div>
+          <div class="mb-3">
+            <label for="country" class="form-label">Country</label>
+            <input type="text" class="form-control" id="country" required />
+          </div>
+          <h4>Payment Information</h4>
+          <div class="mb-3">
+            <label for="creditCardNumber" class="form-label"
+              >Credit Card Number</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="creditCardNumber"
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label for="expiryDate" class="form-label">Expiration Date</label>
+            <input type="text" class="form-control" id="expiryDate" required />
+          </div>
+          <div class="mb-3">
+            <label for="cvv" class="form-label">CVV</label>
+            <input type="text" class="form-control" id="cvv" required />
+          </div>
+          <button type="submit" class="btn btn-success">Submit Order</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-4">
+      <div class="container">
+        <!-- Footer links -->
+        <ul class="list-inline">
+          <li class="list-inline-item me-5">
+            <a href="#">Privacy Policy</a>
+          </li>
+          <li class="list-inline-item me-5">
+            <a href="#">Accessibility Statement</a>
+          </li>
+          <li class="list-inline-item me-5">
+            <a href="#">Customer Support</a>
+          </li>
+          <li class="list-inline-item me-5">
+            <a href="#">Donate/Become a Seller</a>
+          </li>
+        </ul>
+        <p class="mt-4">
+          <strong>&copy; 2024 Thriftly. All Rights Reserved.</strong>
+        </p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies (for toggling the navbar) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/cart.js"></script>
+  </body>
+</html>

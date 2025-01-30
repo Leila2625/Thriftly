@@ -114,6 +114,86 @@ ul.list-inline {
   height: auto; /* Maintain aspect ratio */
   margin: 0 auto; /* Center if necessary */
 }
+.rounded-rectangle,
+.rounded-rectangle2 {
+  background-color: #ced9c1;
+  color: rgb(0, 0, 0);
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.account-link {
+  text-decoration: none;
+  color: inherit;
+}
+.rounded-rectangle:hover {
+  transform: scale(1.02);
+}
+.btn-success {
+  background-color: #ced9c1; /* Custom green color */
+  border-color: #000000;
+  color: #000000;
+  border-radius: 30px;
+}
+.btn-success:hover {
+  background-color: #000000;
+}
+.form-control {
+  border-radius: 30px;
+  border-color: rgb(0, 0, 0);
+}
+.input-group {
+  width: 65%;
+}
+.sort-button {
+  background-color: #ced9c1;
+  color: rgb(0, 0, 0);
+  border-radius: 10px;
+}
+
+.sort-button:hover {
+  background-color: #9aa191;
+}
+
+#arrow {
+  margin-left: 10px; /* Space between "Sort by Price" and the arrow */
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+/* Green divider between cart items */
+.border-green {
+  border: 1px solid #a9c191;
+}
+
+/* Subtotal box */
+.cart-subtotal {
+  background-color: #ced9c1; /* Green background */
+  border-style: solid;
+  border-width: 1px;
+  border-color: #000000;
+  color: rgb(0, 0, 0);
+  border-radius: 5px;
+  min-height: 400px; /* Minimum height to ensure it's not too small */
+  text-align: center;
+}
+
+.cart-subtotal h4 {
+  margin-bottom: 15px;
+}
+
+.cart-subtotal .d-flex {
+  display: flex;
+  flex-direction: column; /* Stack the items vertically */
+  justify-content: space-around; /* Space out the items vertically */
+  align-items: center; /* Center the content horizontally */
+}
+
+.cart-subtotal .d-flex > .d-flex {
+  margin-bottom: 10px; /* Add spacing between the blocks */
+}
 
 /* Flexbox container for the image and text */
 
@@ -140,5 +220,8 @@ ul.list-inline {
   .our_story {
     align-items: center;
     text-align: center;
+  }
+  .cart-subtotal {
+    min-height: 300px; /* Minimum height to ensure it's not too small */
   }
 }
