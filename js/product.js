@@ -292,24 +292,33 @@ const productData = [
 ];
 
 // Get the product id
-const urlParams = new URLSearchParams(window.location.search);
-const productId = urlParams.get("id");
 
-// Find product based on the id
-const product = productData.find((item) => item.id == productId);
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:5001/products") // Adjust the URL if needed
+    .then(response => response.json())
+    .then(products => {
+      productData = products; // Store products in productData
+      displayGroupedProducts(groupProductsBySize(productData));
 
-if (product) {
-  // get product details on the page
-  document.getElementById("productImage").src = product.image;
-  document.getElementById("productType").textContent = product.type;
-  document.getElementById("productName").textContent = product.name;
-  document.getElementById("productDescription").textContent =
-    product.description;
-  document.getElementById("productPrice").textContent = product.price;
-} else {
-  // errors
-  document.getElementById("productName").textContent = "Product Not Found";
-}
+      // Get product ID from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get("id");
+
+      // Find and display the product details
+      const product = productData.find((item) => item.id == productId);
+      if (product) {
+        document.getElementById("productImage").src = product.image;
+        document.getElementById("productType").textContent = product.type;
+        document.getElementById("productName").textContent = product.name;
+        document.getElementById("productDescription").textContent = product.description;
+        document.getElementById("productPrice").textContent = `$${product.price}`;
+      } else {
+        document.getElementById("productName").textContent = "Product Not Found";
+      }
+    })
+    .catch(error => console.error("Error fetching products:", error));
+});
+
 //add quantity of products
 function incrementQuantity() {
   const quantityInput = document.getElementById("quantity");
@@ -330,30 +339,30 @@ function decrementQuantity() {
 function addToCart() {
   const size = document.getElementById("sizeSelect").value;
   const quantity = parseInt(document.getElementById("quantity").value);
-  //require size
+
   if (!size) {
     alert("Please select a size.");
     return;
   }
 
-  // Get the cart from localStorage
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Add product to the cart
-  const cartItem = {
-    id: product.id,
-    name: product.name,
-    price: product.price,
-    size: size,
-    quantity: quantity,
-    image: product.image,
-  };
+  const existingItem = cart.find(item => item.id === product.id && item.size === size);
+  
+  if (existingItem) {
+    existingItem.quantity += quantity; // Update quantity if item exists
+  } else {
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      size: size,
+      quantity: quantity,
+      image: product.image,
+    });
+  }
 
-  cart.push(cartItem);
-
-  // Save updated cart to localStorage
   localStorage.setItem("cart", JSON.stringify(cart));
-
   alert(`${product.name} added to cart!`);
 }
 
@@ -402,9 +411,33 @@ function displayGroupedProducts(groupedProducts) {
 displayGroupedProducts(groupedProducts);
 
 // Attach event listener for the "Add to Cart" button
-document.getElementById("addToCartButton").addEventListener("click", addToCart);
+document.addEventListener("DOMContentLoaded", () => {
+  const addToCartButton = document.getElementById("addToCartButton");
+  if (addToCartButton) {
+    addToCartButton.addEventListener("click", addToCart);
+  }
+});
 
-fetch("http://localhost/getProducts.php")
-  .then(response => response.json())
-  .then(data => console.log(data)) // Replace with logic to display products
-  .catch(error => console.error("Error fetching products:", error));
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch("http://localhost:5001/products") // Adjust the URL if needed
+      .then(response => response.json())
+      .then(products => {
+        const container = document.getElementById("productsContainer");
+        container.innerHTML = ""; // Clear existing content
+  
+        products.forEach(product => {
+          const productElement = document.createElement("div");
+          productElement.classList.add("product");
+          productElement.innerHTML = `
+            <a href="product-details.html?id=${product.id}">
+              <img src="${product.image}" alt="${product.name}">
+              <h4>${product.name}</h4>
+              <p>${product.description}</p>
+              <p>$${product.price}</p>
+            </a>
+          `;
+          container.appendChild(productElement);
+        });
+      })
+      .catch(error => console.error("Error fetching products:", error));
+  });
