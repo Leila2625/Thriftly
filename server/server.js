@@ -1,16 +1,13 @@
 const express = require("express");
-const db = require("./db"); // Import database connection
-const productRoutes = require("./routes/products"); // Import products API
+const connection = require("./db");
+const productsRoutes = require("./routes/products");
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const port = 3000;
 
-app.use(express.json());
+app.use(express.json()); // Add this line
+app.use("/products", productsRoutes);
 
-// ✅ Use Products API Routes
-app.use("/api/products", productRoutes);
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });
