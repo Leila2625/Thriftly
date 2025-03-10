@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   connection.query(
-    "SELECT * FROM Products WHERE id = ?",
+    "SELECT * FROM Products WHERE product_id = ?",
     [id],
     (err, results) => {
       if (err) {
