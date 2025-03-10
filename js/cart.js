@@ -30,9 +30,7 @@ if (cart.length === 0) {
             <p>Size: ${item.size}</p>
             <p>Price: $${parsedPrice.toFixed(2)}</p>
             <p>Quantity: ${item.quantity}</p>
-            <button class="btn btn-danger btn-sm remove-item" data-id="${
-              item.id
-            }">Remove</button>
+            <button class="btn btn-danger btn-sm remove-item" data-id="${item.id}">Remove</button>
           </div>
         </div>
         <hr class="border-green">
@@ -42,19 +40,16 @@ if (cart.length === 0) {
 
   // Add total price for all items
   const totalPrice = cart.reduce(
-    (acc, item) =>
-      acc + parseFloat(item.price.replace("$", "")) * item.quantity,
+    (acc, item) => acc + parseFloat(item.price.replace("$", "")) * item.quantity,
     0
   );
 
   let totalCalculatedPrice = totalPrice * 1.065 + 9.99;
-  totalCPriceElement.innerHTML = `<strong>$${totalCalculatedPrice.toFixed(
-    2
-  )}</strong>`;
+  totalCPriceElement.innerHTML = `<strong>$${totalCalculatedPrice.toFixed(2)}</strong>`;
   totalPriceElement.innerHTML = `$${totalPrice.toFixed(2)}`;
   storedPrice = totalPrice * 1.065 + 9.99;
 
-  //  remove item functionality
+  // Remove item functionality
   cartItemsContainer.addEventListener("click", (event) => {
     if (event.target.classList.contains("remove-item")) {
       const itemId = event.target.dataset.id;
@@ -75,8 +70,47 @@ if (cart.length === 0) {
     }
   });
 }
+
 checkoutButton.addEventListener("click", () => {
   window.location.href = "../pages/cart2.html";
 });
+
 // Function to add item to the cart
+function addToCart(product) {
+  // Get the size and quantity (assumed to be passed to this function)
+  const size = document.getElementById("sizeSelect").value;
+  const quantity = parseInt(document.getElementById("quantity").value);
+
+  // Check if the size is selected
+  if (!size) {
+    alert("Please select a size.");
+    return;
+  }
+
+  // Find if the product is already in the cart
+  const existingItemIndex = cart.findIndex((item) => item.id === product.id && item.size === size);
+
+  if (existingItemIndex > -1) {
+    // If the product already exists, update the quantity
+    cart[existingItemIndex].quantity += quantity;
+  } else {
+    // If not, add a new item to the cart
+    const cartItem = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      size: size,
+      quantity: quantity,
+      image: product.image,
+    };
+    cart.push(cartItem);
+  }
+
+  // Save the updated cart to localStorage
+  localStorage.setItem("cart", JSON.stringify(cart));
+
+  alert(`${product.name} added to cart!`);
+}
+
+// Store price to localStorage
 localStorage.setItem("storedPrice", storedPrice);
