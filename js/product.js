@@ -7,6 +7,7 @@ const productData = [
     price: "$18.99",
     image: "../assets/female/female1.png", // Updated path for female product
     type: "Thrift Item", // Added type
+    size: "M" //added size property
   },
   {
     id: 2,
@@ -15,6 +16,7 @@ const productData = [
     price: "$32.50",
     image: "../assets/female/female2.png", // Updated path for female product
     type: "Thrift Item", // Added type
+    size: "S" //added size property
   },
   {
     id: 3,
@@ -23,6 +25,7 @@ const productData = [
     price: "$24.99",
     image: "../assets/female/female3.png", // Updated path for female product
     type: "Thrift Item", // Added type
+    size: "M" //added size property
   },
   {
     id: 4,
@@ -31,6 +34,7 @@ const productData = [
     price: "$29.99",
     image: "../assets/female/female4.png", // Updated path for female product
     type: "Thrift Item", // Added type
+    size: "L" //added size property
   },
   {
     id: 5,
@@ -39,6 +43,7 @@ const productData = [
     price: "$15.99",
     image: "../assets/female/female5.png", // Updated path for female product
     type: "Thrift Item", // Added type
+    size: "M" //added size property
   },
   {
     id: 6,
@@ -47,6 +52,7 @@ const productData = [
     price: "$21.00",
     image: "../assets/female/female6.png", // Updated path for female product
     type: "Thrift Item", // Added type
+    size: "L" //added size property
   },
   {
     id: 7,
@@ -55,6 +61,7 @@ const productData = [
     price: "$35.00",
     image: "../assets/female/female7.png", // Updated path for female product
     type: "Thrift Item", // Added type
+    size: "M" //added size property
   },
   {
     id: 8,
@@ -63,6 +70,7 @@ const productData = [
     price: "$28.50",
     image: "../assets/female/female8.png", // Updated path for female product
     type: "Thrift Item", // Added type
+    size: "S" //added size property
   },
   {
     id: 9,
@@ -71,6 +79,7 @@ const productData = [
     price: "$18.99",
     image: "../assets/female/female9.png", // Updated path for female product
     type: "Upcycled Item",
+    size: "M" //added size property
   },
   {
     id: 10,
@@ -79,6 +88,7 @@ const productData = [
     price: "$32.50",
     image: "../assets/female/female10.png", // Updated path for female product
     type: "Upcycled Item",
+    size: "M" //added size property
   },
   {
     id: 11,
@@ -87,6 +97,7 @@ const productData = [
     price: "$24.99",
     image: "../assets/female/female11.png", // Updated path for female product
     type: "Upcycled Item",
+    size: "S" //added size property
   },
   {
     id: 12,
@@ -95,6 +106,7 @@ const productData = [
     price: "$29.99",
     image: "../assets/female/female12.png", // Updated path for female product
     type: "Upcycled Item",
+    size: "M" //added size property
   },
   {
     id: 13,
@@ -103,6 +115,7 @@ const productData = [
     price: "$15.99",
     image: "../assets/female/female13.png", // Updated path for female product
     type: "Upcycled Item",
+    size: "S" //added size property
   },
   {
     id: 14,
@@ -111,6 +124,7 @@ const productData = [
     price: "$21.00",
     image: "../assets/female/female14.png", // Updated path for female product
     type: "Upcycled Item",
+    size: "L" //added size property
   },
   {
     id: 15,
@@ -119,6 +133,7 @@ const productData = [
     price: "$35.00",
     image: "../assets/female/female15.png", // Updated path for female product
     type: "Upcycled Item",
+    size: "M" //added size property
   },
   {
     id: 16,
@@ -127,6 +142,7 @@ const productData = [
     price: "$28.50",
     image: "../assets/female/female16.png", // Updated path for female product
     type: "Upcycled Item",
+    size: "L" //added size property
   },
   {
     id: 17,
@@ -135,6 +151,7 @@ const productData = [
     price: "$18.99",
     image: "../assets/male/male1.png", // Updated path for male product
     type: "Thrift Item",
+    size: "S" //added size property
   },
   {
     id: 18,
@@ -143,6 +160,7 @@ const productData = [
     price: "$32.50",
     image: "../assets/male/male2.png", // Updated path for male product
     type: "Thrift Item",
+    size: "M" //added size property
   },
   {
     id: 19,
@@ -151,6 +169,7 @@ const productData = [
     price: "$24.99",
     image: "../assets/male/male3.png", // Updated path for male product
     type: "Thrift Item",
+    size: "M" //added size property
   },
   {
     id: 20,
@@ -159,6 +178,7 @@ const productData = [
     price: "$29.99",
     image: "../assets/male/male4.png", // Updated path for male product
     type: "Thrift Item",
+    size: "M" //added size property
   },
   {
     id: 21,
@@ -167,6 +187,7 @@ const productData = [
     price: "$15.99",
     image: "../assets/male/male5.png", // Updated path for male product
     type: "Thrift Item",
+    size: "S" //added size property
   },
   {
     id: 22,
@@ -175,6 +196,7 @@ const productData = [
     price: "$21.00",
     image: "../assets/male/male6.png", // Updated path for male product
     type: "Thrift Item",
+    size: "M" //added size property
   },
   {
     id: 23,
@@ -183,6 +205,7 @@ const productData = [
     price: "$35.00",
     image: "../assets/male/male7.png", // Updated path for male product
     type: "Thrift Item",
+    size: "M" //added size property
   },
   {
     id: 24,
@@ -191,6 +214,7 @@ const productData = [
     price: "$28.50",
     image: "../assets/male/male8.png", // Updated path for male product
     type: "Thrift Item",
+    size: "L" //added size property
   },
 
   {
@@ -200,6 +224,7 @@ const productData = [
     price: "$18.99",
     image: "../assets/male/male9.png", // Updated path for male product
     type: "Upcycled Item",
+    size: "M" //added size property
   },
   {
     id: 26,
@@ -208,6 +233,7 @@ const productData = [
     price: "$32.50",
     image: "../assets/male/male10.png", // Updated path for male product
     type: "Upcycled Item",
+    size: "M" //added size property
   },
   {
     id: 27,
@@ -216,6 +242,7 @@ const productData = [
     price: "$24.99",
     image: "../assets/male/male11.png", // Updated path for male product
     type: "Upcycled Item",
+    size: "S" //added size property
   },
   {
     id: 28,
@@ -224,6 +251,7 @@ const productData = [
     price: "$29.99",
     image: "../assets/male/male12.png", // Updated path for male product
     type: "Upcycled Item",
+    size: "L" //added size property
   },
   {
     id: 29,
@@ -232,6 +260,7 @@ const productData = [
     price: "$15.99",
     image: "../assets/male/male13.png", // Updated path for male product
     type: "Upcycled Item",
+    size: "M" //added size property
   },
   {
     id: 30,
@@ -240,6 +269,7 @@ const productData = [
     price: "$21.00",
     image: "../assets/male/male14.png", // Updated path for male product
     type: "Upcycled Item",
+    size: "L" //added size property
   },
   {
     id: 31,
@@ -248,6 +278,7 @@ const productData = [
     price: "$35.00",
     image: "../assets/male/male15.png", // Updated path for male product
     type: "Upcycled Item",
+    size: "M" //added size property
   },
   {
     id: 32,
@@ -256,28 +287,38 @@ const productData = [
     price: "$28.50",
     image: "../assets/male/male16.png", // Updated path for male product
     type: "Upcycled Item",
+    size: "S" //added size property
   },
 ];
 
 // Get the product id
-const urlParams = new URLSearchParams(window.location.search);
-const productId = urlParams.get("id");
 
-// Find product based on the id
-const product = productData.find((item) => item.id == productId);
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("http://localhost:5001/products") // Adjust the URL if needed
+    .then(response => response.json())
+    .then(products => {
+      productData = products; // Store products in productData
+      displayGroupedProducts(groupProductsBySize(productData));
 
-if (product) {
-  // get product details on the page
-  document.getElementById("productImage").src = product.image;
-  document.getElementById("productType").textContent = product.type;
-  document.getElementById("productName").textContent = product.name;
-  document.getElementById("productDescription").textContent =
-    product.description;
-  document.getElementById("productPrice").textContent = product.price;
-} else {
-  // errors
-  document.getElementById("productName").textContent = "Product Not Found";
-}
+      // Get product ID from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get("id");
+
+      // Find and display the product details
+      const product = productData.find((item) => item.id == productId);
+      if (product) {
+        document.getElementById("productImage").src = product.image;
+        document.getElementById("productType").textContent = product.type;
+        document.getElementById("productName").textContent = product.name;
+        document.getElementById("productDescription").textContent = product.description;
+        document.getElementById("productPrice").textContent = `$${product.price}`;
+      } else {
+        document.getElementById("productName").textContent = "Product Not Found";
+      }
+    })
+    .catch(error => console.error("Error fetching products:", error));
+});
+
 //add quantity of products
 function incrementQuantity() {
   const quantityInput = document.getElementById("quantity");
@@ -298,31 +339,105 @@ function decrementQuantity() {
 function addToCart() {
   const size = document.getElementById("sizeSelect").value;
   const quantity = parseInt(document.getElementById("quantity").value);
-  //require size
+
   if (!size) {
     alert("Please select a size.");
     return;
   }
 
-  // Get the cart from localStorage
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  // Add product to the cart
-  const cartItem = {
-    id: product.id,
-    name: product.name,
-    price: product.price,
-    size: size,
-    quantity: quantity,
-    image: product.image,
-  };
+  const existingItem = cart.find(item => item.id === product.id && item.size === size);
+  
+  if (existingItem) {
+    existingItem.quantity += quantity; // Update quantity if item exists
+  } else {
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      size: size,
+      quantity: quantity,
+      image: product.image,
+    });
+  }
 
-  cart.push(cartItem);
-
-  // Save updated cart to localStorage
   localStorage.setItem("cart", JSON.stringify(cart));
-
   alert(`${product.name} added to cart!`);
 }
 
-document.getElementById("addToCartButton").addEventListener("click", addToCart);
+// Group products by size
+function groupProductsBySize(products) {
+  return products.reduce((acc, product) => {
+    const size = product.size;
+    if (!acc[size]) {
+      acc[size] = []; // Initialize an empty array for each size
+    }
+    acc[size].push(product); // Add the product to its corresponding size array
+    return acc;
+  }, {});
+}
+
+const groupedProducts = groupProductsBySize(productData);
+
+// Example of how to display products grouped by size in the front-end
+function displayGroupedProducts(groupedProducts) {
+  const container = document.getElementById('productsContainer'); // Your container element
+
+  for (const size in groupedProducts) {
+    const sizeSection = document.createElement('div');
+    const sizeHeader = document.createElement('h3');
+    sizeHeader.textContent = `Size: ${size}`;
+    sizeSection.appendChild(sizeHeader);
+
+    groupedProducts[size].forEach((product) => {
+      const productElement = document.createElement('div');
+      productElement.classList.add('product');
+      
+      productElement.innerHTML = `
+        <img src="${product.image}" alt="${product.name}">
+        <h4>${product.name}</h4>
+        <p>${product.description}</p>
+        <p>${product.price}</p>
+      `;
+
+      sizeSection.appendChild(productElement);
+    });
+
+    container.appendChild(sizeSection);
+  }
+}
+
+displayGroupedProducts(groupedProducts);
+
+// Attach event listener for the "Add to Cart" button
+document.addEventListener("DOMContentLoaded", () => {
+  const addToCartButton = document.getElementById("addToCartButton");
+  if (addToCartButton) {
+    addToCartButton.addEventListener("click", addToCart);
+  }
+});
+
+  document.addEventListener("DOMContentLoaded", () => {
+    fetch("http://localhost:5001/products") // Adjust the URL if needed
+      .then(response => response.json())
+      .then(products => {
+        const container = document.getElementById("productsContainer");
+        container.innerHTML = ""; // Clear existing content
+  
+        products.forEach(product => {
+          const productElement = document.createElement("div");
+          productElement.classList.add("product");
+          productElement.innerHTML = `
+            <a href="product-details.html?id=${product.id}">
+              <img src="${product.image}" alt="${product.name}">
+              <h4>${product.name}</h4>
+              <p>${product.description}</p>
+              <p>$${product.price}</p>
+            </a>
+          `;
+          container.appendChild(productElement);
+        });
+      })
+      .catch(error => console.error("Error fetching products:", error));
+  });
