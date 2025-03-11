@@ -14,6 +14,35 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/upcycled", (req, res) => {
+  connection.query(
+    "SELECT * FROM Products WHERE category = 'Upcycled'",
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching thrift products:", err);
+        return res
+          .status(500)
+          .json({ error: "Error fetching thrift products" });
+      }
+      res.json(results);
+    }
+  );
+});
+
+router.get("/thrift", (req, res) => {
+  connection.query(
+    "SELECT * FROM Products WHERE category = 'Thrift'",
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching thrift products:", err);
+        return res
+          .status(500)
+          .json({ error: "Error fetching thrift products" });
+      }
+      res.json(results);
+    }
+  );
+});
 // ✅ Fetch product by ID
 router.get("/:id", (req, res) => {
   const { id } = req.params;
@@ -32,5 +61,6 @@ router.get("/:id", (req, res) => {
     }
   );
 });
+// Fetch all thrift products from the database
 
 module.exports = router;
