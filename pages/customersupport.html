@@ -14,16 +14,30 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
       rel="stylesheet"
     />
+    <style>
+      /* Add this CSS to ensure the footer stays at the bottom */
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+      }
+      .content {
+        min-height: calc(100vh - 56px); /* Adjust based on your navbar height */
+        display: flex;
+        flex-direction: column;
+      }
+      footer {
+        margin-top: auto; /* Pushes the footer to the bottom */
+      }
+    </style>
   </head>
   <body>
     <div class="content">
-  
       <nav class="navbar navbar-expand-lg navbar-light py-3 main-nav">
         <div class="container-fluid">
           <img src="../assets/logo.png" alt="Logo" class="logo" />
           <a class="navbar-brand" href="#"><strong>THRIFTLY</strong></a>
 
-       
           <button
             class="navbar-toggler"
             type="button"
@@ -51,9 +65,6 @@
               <li class="nav-item me-3">
                 <a class="nav-link" href="../pages/about.html">ABOUT US</a>
               </li>
-              <li class="nav-item me-3">
-                <a class="nav-link active" href="../pages/contact.html">CONTACT US</a>
-              </li>
             </ul>
           </div>
 
@@ -69,33 +80,35 @@
         </div>
       </nav>
 
+      <!-- New Contact Section -->
+      <div
+        class="container my-3 mt-5 d-flex justify-content-center align-items-center"
+      >
+        <div
+          class="text-center p-5 border rounded-4 shadow-lg"
+          style="max-width: 600px"
+        >
+          <h2 class="display-4">We'd Love to Hear From You!</h2>
+          <!-- Use Bootstrap's display class for larger text -->
+          <p class="lead fs-4">Here's how you can reach us:</p>
+          <!-- Use fs-4 to make the paragraph text larger -->
 
-      <div class="container my-5">
-        <h2 class="text-center"><strong>Contact Us</strong></h2>
-        <p class="fs-5 text-center">We'd love to hear from you! Here's how you can reach us:</p>
-
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-         
-            <div class="mb-4">
-              <h4><strong>Store Hours</strong></h4>
-              <p>Monday - Sunday: 10:00 AM - 7:00 PM</p>
-            </div>
-
-
-            <div class="mb-4">
-              <h4><strong>Email</strong></h4>
-              <p><a href="mailto:contact@thriftly.com">contact@thriftly.com</a></p>
-            </div>
-
-            <div class="mb-4">
-              <h4><strong>Phone Number</strong></h4>
-              <p><a href="tel:+13215879729">321-587-9729</a></p>
-            </div>
-
+          <ul class="list-unstyled">
+            <!-- Use list-unstyled to remove bullets -->
+            <li class="fs-4">
+              <strong>Office Hours:</strong> 10 AM - 5 PM, Monday-Friday
+            </li>
+            <li class="fs-4 mt-2">
+              <strong>Email:</strong>
+              <a href="mailto:contact@thriftly.com">contact@thriftly.com</a>
+            </li>
+            <li class="fs-4 mt-2">
+              <strong>Phone Number:</strong> (123) 456-7890
+            </li>
+            <!-- Replace with actual number -->
+          </ul>
         </div>
       </div>
-
 
       <footer class="py-4">
         <div class="container">
@@ -104,10 +117,12 @@
               <a href="../pages/privacypolicy.html">Privacy Policy</a>
             </li>
             <li class="list-inline-item me-5">
-              <a href="../pages/accessibilitystatement.html">Accessibility Statement</a>
+              <a href="../pages/accessibilitystatement.html"
+                >Accessibility Statement</a
+              >
             </li>
             <li class="list-inline-item me-5">
-              <a href="../pages.customersupport.html">Customer Support</a>
+              <a href="../pages/customersupport.html">Customer Support</a>
             </li>
             <li class="list-inline-item me-5">
               <a href="../pages/donate.html">Donate/Become a Seller</a>
