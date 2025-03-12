@@ -52,7 +52,7 @@
 //   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 //   const existingItem = cart.find(item => item.id === product.id && item.size === size);
-  
+
 //   if (existingItem) {
 //     existingItem.quantity += quantity; // Update quantity if item exists
 //   } else {
@@ -97,7 +97,7 @@
 //     groupedProducts[size].forEach((product) => {
 //       const productElement = document.createElement('div');
 //       productElement.classList.add('product');
-      
+
 //       productElement.innerHTML = `
 //         <img src="${product.image}" alt="${product.name}">
 //         <h4>${product.name}</h4>
@@ -128,7 +128,7 @@
 //       .then(products => {
 //         const container = document.getElementById("productsContainer");
 //         container.innerHTML = ""; // Clear existing content
-  
+
 //         products.forEach(product => {
 //           const productElement = document.createElement("div");
 //           productElement.classList.add("product");
@@ -149,8 +149,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   // Fetch the products once
   fetch("http://localhost:3000/products")
-    .then(response => response.json())
-    .then(products => {
+    .then((response) => response.json())
+    .then((products) => {
       const productData = products; // Store products in productData
       displayGroupedProducts(groupProductsBySize(productData));
 
@@ -161,48 +161,31 @@ document.addEventListener("DOMContentLoaded", () => {
       // Find and display the product details
       const product = productData.find((item) => item.product_id == productId);
       if (product) {
+        document.getElementById(
+          "productSize"
+        ).textContent = `Size ${product.size}`;
         document.getElementById("productImage").src = product.image_url;
         document.getElementById("productName").textContent = product.name;
-        document.getElementById("productDescription").textContent = product.description;
-        document.getElementById("productPrice").textContent = `$${product.price}`;
+        document.getElementById("productDescription").textContent =
+          product.description;
+        document.getElementById(
+          "productPrice"
+        ).textContent = `$${product.price}`;
       } else {
-        document.getElementById("productName").textContent = "Product Not Found";
+        document.getElementById("productName").textContent =
+          "Product Not Found";
       }
     })
-    .catch(error => console.error("Error fetching products:", error));
+    .catch((error) => console.error("Error fetching products:", error));
 });
-
-// Function to increment/decrement quantity
-function incrementQuantity() {
-  const quantityInput = document.getElementById("quantity");
-  const currentValue = parseInt(quantityInput.value);
-
-  if (currentValue < 5) {
-    quantityInput.value = currentValue + 1;
-  }
-}
-
-function decrementQuantity() {
-  const quantityInput = document.getElementById("quantity");
-  const currentValue = parseInt(quantityInput.value);
-  if (currentValue > 1) {
-    quantityInput.value = currentValue - 1;
-  }
-}
 
 // Add to cart functionality
 function addToCart() {
-  const size = document.getElementById("sizeSelect").value;
-  const quantity = parseInt(document.getElementById("quantity").value);
-
-  if (!size) {
-    alert("Please select a size.");
-    return;
-  }
-
   let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-  const existingItem = cart.find(item => item.id === product.id && item.size === size);
+  const existingItem = cart.find(
+    (item) => item.id === product.id && item.size === size
+  );
 
   if (existingItem) {
     existingItem.quantity += quantity; // Update quantity if item exists
@@ -235,7 +218,7 @@ function groupProductsBySize(products) {
 
 // Function to display grouped products
 function displayGroupedProducts(groupedProducts) {
-  const container = document.getElementById('productsContainer'); // Your container element
+  const container = document.getElementById("productsContainer"); // Your container element
 
   if (!container) {
     console.error("Container element not found");
@@ -243,15 +226,15 @@ function displayGroupedProducts(groupedProducts) {
   }
 
   for (const size in groupedProducts) {
-    const sizeSection = document.createElement('div');
-    const sizeHeader = document.createElement('h3');
+    const sizeSection = document.createElement("div");
+    const sizeHeader = document.createElement("h3");
     sizeHeader.textContent = `Size: ${size}`;
     sizeSection.appendChild(sizeHeader);
 
     groupedProducts[size].forEach((product) => {
-      const productElement = document.createElement('div');
-      productElement.classList.add('product');
-      
+      const productElement = document.createElement("div");
+      productElement.classList.add("product");
+
       productElement.innerHTML = `
         <img src="${product.image_url}" alt="${product.name}">
         <h4>${product.name}</h4>

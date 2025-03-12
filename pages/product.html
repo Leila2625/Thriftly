@@ -102,46 +102,14 @@
           <img id="productImage" class="img-fluid" alt="Product Image" />
         </div>
         <div class="col-md-6">
-          <h5 class="fst-italic" id="productType">Product Type</h5>
+          <h5 class="fst-italic" id="productSize">Size</h5>
           <h2 id="productName">Product Name</h2>
           <p id="productDescription">Product Description</p>
           <p><strong id="productPrice">Price</strong></p>
 
           <!-- Size Dropdown -->
-          <div class="mb-3">
-            <select class="form-select" style="width: 200px" id="sizeSelect">
-              <option value="" selected disabled>Select Size</option>
-              <option value="XS">XS</option>
-              <option value="S">S</option>
-              <option value="M">M</option>
-              <option value="L">L</option>
-              <option value="XL">XL</option>
-            </select>
-          </div>
 
           <!-- Quantity Selector -->
-          <div class="mb-3 d-flex align-items-center" style="width: 200px">
-            <button
-              class="btn btn-outline-secondary"
-              onclick="decrementQuantity()"
-            >
-              -
-            </button>
-            <input
-              type="number"
-              id="quantity"
-              class="form-control mx-2 text-center"
-              value="1"
-              readonly
-              style="width: 60px"
-            />
-            <button
-              class="btn btn-outline-secondary"
-              onclick="incrementQuantity()"
-            >
-              +
-            </button>
-          </div>
 
           <!-- Add to Cart and Wishlist Buttons -->
           <div class="d-flex gap-2 mb-3">
@@ -151,17 +119,6 @@
               style="background-color: #a9c191; color: white"
             >
               Add to Cart
-            </button>
-            <button
-              class="btn"
-              id="addToWishlistButton"
-              style="
-                background-color: white;
-                color: #a9c191;
-                border: 1px solid #a9c191;
-              "
-            >
-              <i class="bi bi-heart"></i> Add to Wishlist
             </button>
           </div>
         </div>
