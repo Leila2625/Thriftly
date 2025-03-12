@@ -14,35 +14,62 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/upcycled", (req, res) => {
+// ✅ Fetch all Men's Upcycled Products
+router.get("/men/upcycled", (req, res) => {
   connection.query(
-    "SELECT * FROM Products WHERE category = 'Upcycled'",
+    "SELECT * FROM Products WHERE category = 'Upcycled' AND gender = 'Male'",
     (err, results) => {
       if (err) {
-        console.error("Error fetching thrift products:", err);
-        return res
-          .status(500)
-          .json({ error: "Error fetching thrift products" });
+        console.error("Error fetching men's upcycled products:", err);
+        return res.status(500).json({ error: "Error fetching products" });
       }
       res.json(results);
     }
   );
 });
 
-router.get("/thrift", (req, res) => {
+// ✅ Fetch all Men's Thrifted Products
+router.get("/men/thrift", (req, res) => {
   connection.query(
-    "SELECT * FROM Products WHERE category = 'Thrift'",
+    "SELECT * FROM Products WHERE category = 'Thrift' AND gender = 'Male'",
     (err, results) => {
       if (err) {
-        console.error("Error fetching thrift products:", err);
-        return res
-          .status(500)
-          .json({ error: "Error fetching thrift products" });
+        console.error("Error fetching men's thrifted products:", err);
+        return res.status(500).json({ error: "Error fetching products" });
       }
       res.json(results);
     }
   );
 });
+
+// ✅ Fetch all Women's Upcycled Products
+router.get("/women/upcycled", (req, res) => {
+  connection.query(
+    "SELECT * FROM Products WHERE category = 'Upcycled' AND gender = 'Female'",
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching women's upcycled products:", err);
+        return res.status(500).json({ error: "Error fetching products" });
+      }
+      res.json(results);
+    }
+  );
+});
+
+// ✅ Fetch all Women's Thrifted Products
+router.get("/women/thrift", (req, res) => {
+  connection.query(
+    "SELECT * FROM Products WHERE category = 'Thrift' AND gender = 'Female'",
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching women's thrifted products:", err);
+        return res.status(500).json({ error: "Error fetching products" });
+      }
+      res.json(results);
+    }
+  );
+});
+
 // ✅ Fetch product by ID
 router.get("/:id", (req, res) => {
   const { id } = req.params;
@@ -61,6 +88,5 @@ router.get("/:id", (req, res) => {
     }
   );
 });
-// Fetch all thrift products from the database
 
 module.exports = router;
