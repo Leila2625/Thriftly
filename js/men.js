@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   const productsDiv = document.getElementById("product-list");
   const sortButton = document.getElementById("sortButton");
-  let clicked = false; // Track if the button was clicked
-  let isAscending = true; // Default sorting: cheapest to expensive
+  let clicked = false;
 
+  // Fetch the products from the server
   fetch("http://localhost:3000/products/men/thrift")
     .then((response) => response.json())
     .then((products) => {
@@ -12,9 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
-      // Function to display products
-      function displayProducts(productsToDisplay) {
-        productsDiv.innerHTML = ""; // Clear existing content
+      // Sort products by price (ascending) by default
+      let sortedProducts = sortByPriceAsc([...products]);
+      loadProducts(sortedProducts);
+
+      // Sorting function
+      function loadProducts(productsToDisplay) {
+        // Clear the existing content
+        productsDiv.innerHTML = "";
 
         // Loop through the products and create cards
         productsToDisplay.forEach((product) => {
@@ -34,34 +39,40 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
 
-      // Function to sort products by price (ascending or descending)
-      function sortProducts() {
-        const sortedProducts = [...products].sort((a, b) => {
-          return isAscending ? a.price - b.price : b.price - a.price;
-        });
-        displayProducts(sortedProducts); // Re-render products with sorted order
+      // Sorting by Price Ascending
+      function sortByPriceAsc(products) {
+        return products.sort(
+          (a, b) =>
+            parseFloat(a.price.replace("$", "")) -
+            parseFloat(b.price.replace("$", ""))
+        );
       }
 
-      // Initially display products sorted from cheapest to expensive
-      sortProducts();
+      // Sorting by Price Descending
+      function sortByPriceDesc(products) {
+        return products.sort(
+          (a, b) =>
+            parseFloat(b.price.replace("$", "")) -
+            parseFloat(a.price.replace("$", ""))
+        );
+      }
 
-      // Event listener for the sort button
-      sortButton.addEventListener("click", () => {
-        // Flip the arrow direction based on the sort order first
-        if (isAscending) {
-          sortButton.innerHTML =
-            'Sort by Price<span id="arrow">&uarr;&darr;</span>'; // Ascending to descending
+      // Sort Button Toggle Functionality
+      sortButton.onclick = () => {
+        if (!clicked) {
+          // Sort in descending order
+          sortedProducts = sortByPriceDesc([...products]);
+          loadProducts(sortedProducts);
+          sortButton.innerHTML = `Sort by Price<span id="arrow">&darr;&uarr;</span>`; // Update button text
+          clicked = true;
         } else {
-          sortButton.innerHTML =
-            'Sort by Price<span id="arrow">&darr;&uarr;</span>'; // Descending to ascending
+          // Sort in ascending order
+          sortedProducts = sortByPriceAsc([...products]);
+          loadProducts(sortedProducts);
+          sortButton.innerHTML = `Sort by Price<span id="arrow">&uarr;&darr;</span>`; // Update button text
+          clicked = false;
         }
-
-        // Toggle the sorting order
-        isAscending = !isAscending;
-
-        // Call sortProducts to apply the new sorting order
-        sortProducts();
-      });
+      };
     })
     .catch((error) => {
       console.error("Error fetching products:", error);
