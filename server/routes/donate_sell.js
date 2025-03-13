@@ -3,7 +3,7 @@ const connection = require("../db"); // Database connection
 
 const router = express.Router();
 
-// ✅ Fetch all Sell/Donate entries
+//  Fetch all
 router.get("/", (req, res) => {
   connection.query("SELECT * FROM Sell_Form", (err, results) => {
     if (err) {
@@ -14,7 +14,7 @@ router.get("/", (req, res) => {
   });
 });
 
-// ✅ Fetch a specific entry by ID
+// Fetch by ID
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   connection.query(
@@ -32,6 +32,8 @@ router.get("/:id", (req, res) => {
     }
   );
 });
+
+// post to table
 router.post("/", (req, res) => {
   const { name, email, phone_number, inquiry } = req.body;
 
@@ -41,7 +43,7 @@ router.post("/", (req, res) => {
 
   console.log("Received donation request:", req.body);
 
-  // SQL query to insert the data into the database
+  // SQL query to put data into the database
   const query =
     "INSERT INTO Sell_Form (name, email, phone_number, inquiry) VALUES (?, ?, ?, ?)";
   const values = [name, email, phone_number, inquiry];

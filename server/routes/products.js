@@ -3,7 +3,7 @@ const connection = require("../db"); // Database connection
 
 const router = express.Router();
 
-// ✅ Fetch all products
+// Fetch all
 router.get("/", (req, res) => {
   connection.query("SELECT * FROM Products", (err, results) => {
     if (err) {
@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
     res.json(results);
   });
 });
-
+// Fetch on sale items
 router.get("/on_sale", (req, res) => {
   connection.query(
     "SELECT * FROM Products WHERE on_sale = 'TRUE'",
@@ -28,6 +28,7 @@ router.get("/on_sale", (req, res) => {
     }
   );
 });
+// Fetch new addition items
 router.get("/new_additions", (req, res) => {
   connection.query(
     "SELECT * FROM Products WHERE new_additions = 'TRUE'",
@@ -42,7 +43,7 @@ router.get("/new_additions", (req, res) => {
     }
   );
 });
-// ✅ Fetch all Men's Upcycled Products
+//Fetch Men's Upcycled Products
 router.get("/men/upcycled", (req, res) => {
   connection.query(
     "SELECT * FROM Products WHERE category = 'Upcycled' AND gender = 'Male'",
@@ -56,7 +57,7 @@ router.get("/men/upcycled", (req, res) => {
   );
 });
 
-// ✅ Fetch all Men's Thrifted Products
+// Fetch Men's Thrifted Products
 router.get("/men/thrift", (req, res) => {
   connection.query(
     "SELECT * FROM Products WHERE category = 'Thrift' AND gender = 'Male'",
@@ -70,7 +71,7 @@ router.get("/men/thrift", (req, res) => {
   );
 });
 
-// ✅ Fetch all Women's Upcycled Products
+// Fetch Women's Upcycled Products
 router.get("/women/upcycled", (req, res) => {
   connection.query(
     "SELECT * FROM Products WHERE category = 'Upcycled' AND gender = 'Female'",
@@ -84,7 +85,7 @@ router.get("/women/upcycled", (req, res) => {
   );
 });
 
-// ✅ Fetch all Women's Thrifted Products
+// Fetch Women's Thrifted Products
 router.get("/women/thrift", (req, res) => {
   connection.query(
     "SELECT * FROM Products WHERE category = 'Thrift' AND gender = 'Female'",
@@ -98,7 +99,7 @@ router.get("/women/thrift", (req, res) => {
   );
 });
 
-// ✅ Fetch product by ID
+// Fetch by ID
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   connection.query(

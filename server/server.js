@@ -9,11 +9,11 @@ const app = express();
 const port = 3000;
 
 app.use(cors());
-app.use(express.json()); // Add this line
+app.use(express.json());
 app.use("/products", productsRoutes);
 app.use("/donate", donateRoutes);
 app.use(express.static("public"));
-app.use("/cart", cartRoutes); // Add cart route
+app.use("/cart", cartRoutes);
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

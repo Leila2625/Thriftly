@@ -3,7 +3,7 @@ const connection = require("../db"); // Database connection
 
 const router = express.Router();
 
-// ✅ Fetch all items in the cart (WITH product details from Products table)
+//Fetch all the items in the cart (with product details from Products table)
 router.get("/", (req, res) => {
   const query = `
 SELECT Cart.cart_id, Cart.product_id, Cart.added_at,
@@ -21,7 +21,7 @@ JOIN Products ON Cart.product_id = Products.product_id
   });
 });
 
-// ✅ Add an item to the cart (Only stores product_id)
+// Add item to the cart (Only product_id)
 router.post("/", (req, res) => {
   const { product_id } = req.body;
 
@@ -44,7 +44,7 @@ router.post("/", (req, res) => {
   });
 });
 
-// ✅ Remove an item from the cart by cart_id
+// Remove item from the cart by cart_id
 router.delete("/:cart_id", (req, res) => {
   const { cart_id } = req.params;
 
@@ -61,7 +61,7 @@ router.delete("/:cart_id", (req, res) => {
   });
 });
 
-// ✅ Clear the entire cart
+// Clear entire cart
 router.delete("/", (req, res) => {
   connection.query("DELETE FROM Cart", (err, results) => {
     if (err) {
