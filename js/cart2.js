@@ -1,4 +1,4 @@
-// ✅ Load total price from localStorage and display it
+// Load total price from localStorage and display it
 document.addEventListener("DOMContentLoaded", function () {
   let storedPrice = localStorage.getItem("storedPrice");
 
@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// ✅ Validate form and redirect to cart3.html
+// Validate form and redirect to 'cart3.html'
 function validateForm(event) {
   let valid = true;
   event.preventDefault();
@@ -48,7 +48,7 @@ function validateForm(event) {
     }
   });
 
-  // If valid, redirect to cart3.html
+  // If valid, redirect to 'cart3.html'
   if (valid) {
     window.location.href = "../pages/cart3.html";
   }
