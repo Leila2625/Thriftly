@@ -40,7 +40,7 @@ footer .container {
   flex-grow: 1;
 }
 .collapse {
-  margin-right: 10vw; /* Shift navbar items to the left */
+  margin-right: 14vw; /* Shift navbar items to the left */
 }
 .nav-item {
   font-size: 1.2rem;
