@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const shoppingCart = document.getElementById("shoppingCart");
   const API_URL = "http://localhost:3000/cart"; // Backend API
 
-  // ✅ Load total price from localStorage
+  // Load total price from localStorage
   let storedPrice = localStorage.getItem("storedPrice");
   let numericPrice = parseFloat(storedPrice) || 0;
 
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     totalExplanation.innerHTML = "";
   }
 
-  // ✅ Fetch cart items from backend (since localStorage is now cleared)
+  // Fetch cart items
   fetch(API_URL)
     .then((response) => response.json())
     .then((cartItems) => {
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
         cartItemsContainer.appendChild(cartItem);
       });
 
-      // ✅ Clear cart from backend AFTER displaying order summary
+      // Clear cart AFTER displaying order summary
       fetch(API_URL, { method: "DELETE" })
         .then(() => {
           console.log("Cart cleared successfully!");
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
       cartItemsContainer.innerHTML = "<p>Failed to load order details.</p>";
     });
 
-  // ✅ Clear localStorage items so the cart is empty for the next session
+  // Clear localStorage items so the cart is empty for the next session
   window.addEventListener("beforeunload", () => {
     localStorage.removeItem("cart");
     localStorage.removeItem("storedPrice");
