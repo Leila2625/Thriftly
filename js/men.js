@@ -25,7 +25,6 @@ document.addEventListener("DOMContentLoaded", function () {
         productsToDisplay.forEach((product) => {
           const productCard = document.createElement("div");
           productCard.classList.add("col-md-3", "mb-4", "text-center");
-
           productCard.innerHTML = `
             <a href="product.html?id=${product.product_id}">
               <img src="${product.image_url}" class="img-fluid" alt="${product.name}">
@@ -36,6 +35,8 @@ document.addEventListener("DOMContentLoaded", function () {
             <p><strong>$${product.price}</strong></p>
           `;
           productsDiv.appendChild(productCard);
+          console.log(product.image_url);
+          console.log(product.product_id);
         });
       }
 

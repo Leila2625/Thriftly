@@ -1,62 +1,75 @@
-// Get cart from localStorage
-const cart = JSON.parse(localStorage.getItem("cart")) || [];
+document.addEventListener("DOMContentLoaded", function () {
+  const cartItemsContainer = document.getElementById("cartItems");
+  const totalPriceElement = document.getElementById("totalSummaryPrice");
+  const totalExplanation = document.getElementById("totalExplanation");
+  const shoppingCart = document.getElementById("shoppingCart");
+  const API_URL = "http://localhost:3000/cart"; // Backend API
 
-const shoppingCart = document.getElementById("shoppingCart");
+  // ✅ Load total price from localStorage
+  let storedPrice = localStorage.getItem("storedPrice");
+  let numericPrice = parseFloat(storedPrice) || 0;
 
-const cartItemsContainer = document.getElementById("cartItems");
-const totalPriceElement = document.getElementById("totalSummaryPrice");
-const totalExplanation = document.getElementById("totalExplanation");
-//empty
-if (cart.length === 0) {
-  cartItemsEmpty.innerHTML = "<p>Your order is empty!</p>";
+  if (numericPrice > 0) {
+    totalPriceElement.innerHTML = `<strong>Total</strong>:
+  $${numericPrice.toFixed(2)}`;
+    totalExplanation.innerHTML = `<strong>Subtotal</strong>:
+  $${(numericPrice - 9.99).toFixed(2)}
+  + $9.99 <strong>Shipping</strong>`;
+  } else {
+    totalPriceElement.innerHTML = "<strong>Total</strong>: $0.00";
+    totalExplanation.innerHTML = "";
+  }
 
-  shoppingCart.classList.add("hidden");
-} else {
-  // Generate cart items
+  // ✅ Fetch cart items from backend (since localStorage is now cleared)
+  fetch(API_URL)
+    .then((response) => response.json())
+    .then((cartItems) => {
+      cartItemsContainer.innerHTML = ""; // Clear previous items
 
-  cartItemsContainer.innerHTML = cart
-    .map((item) => {
-      // Parse the price and remove the $
-      const parsedPrice = parseFloat(item.price.replace("$", "")) || 0;
+      if (!cartItems || cartItems.length === 0) {
+        cartItemsContainer.innerHTML = "<p>Your order is empty!</p>";
+        shoppingCart.classList.add("hidden");
+        return;
+      }
 
-      return `
-        <div class="row cart-item mb-4">
-          <div class="col-md-3">
-            <img src="${item.image}" alt="${item.name}" class="img-fluid" />
-          </div>
-          <div class="col-md-9">
-            <h3>${item.name}</h3>
-            <p>Size: ${item.size}</p>
-            <p>Price: $${parsedPrice.toFixed(2)}</p>
-            <p>Quantity: ${item.quantity}</p>
-            
-          </div>
-        </div>
-        <hr class="border-green">
-      `;
+      cartItems.forEach((item) => {
+        const cartItem = document.createElement("div");
+        cartItem.classList.add(
+          "cart-item",
+          "d-flex",
+          "justify-content-between",
+          "mb-3"
+        );
+
+        cartItem.innerHTML = `
+  <div class="d-flex align-items-center">
+  <img src="${item.image_url}" class="cart-img me-3" alt="${item.name}"
+  style="width: 80px; height: 80px;">
+  <div>
+  <h5>${item.name}</h5>
+  <p>Price: $${item.price}</p>
+  </div>
+  </div>
+  `;
+
+        cartItemsContainer.appendChild(cartItem);
+      });
+
+      // ✅ Clear cart from backend AFTER displaying order summary
+      fetch(API_URL, { method: "DELETE" })
+        .then(() => {
+          console.log("Cart cleared successfully!");
+        })
+        .catch((error) => console.error("Error clearing cart:", error));
     })
-    .join("");
+    .catch((error) => {
+      console.error("Error fetching cart items:", error);
+      cartItemsContainer.innerHTML = "<p>Failed to load order details.</p>";
+    });
 
-  // Add the total price
-  const totalPrice = cart.reduce(
-    (acc, item) =>
-      acc + parseFloat(item.price.replace("$", "")) * item.quantity,
-    0
-  );
-
-  let totalCalculatedPrice = totalPrice * 1.065 + 9.99;
-  let tax = totalCalculatedPrice - 9.99 - totalPrice;
-  totalPriceElement.innerHTML = `<strong>Total</strong>: $${totalCalculatedPrice.toFixed(
-    2
-  )}`;
-  totalExplanation.innerHTML = `<strong>Subtotal</strong>: $${totalPrice.toFixed(
-    2
-  )}+ $9.99 <strong>Shipping</strong> + $${tax.toFixed(
-    2
-  )} <strong>Taxes</strong>`;
-}
-//reset local storage items so cart is empty again
-window.addEventListener("beforeunload", () => {
-  localStorage.removeItem("cart");
-  localStorage.removeItem("storedPrice");
+  // ✅ Clear localStorage items so the cart is empty for the next session
+  window.addEventListener("beforeunload", () => {
+    localStorage.removeItem("cart");
+    localStorage.removeItem("storedPrice");
+  });
 });

@@ -14,6 +14,34 @@ router.get("/", (req, res) => {
   });
 });
 
+router.get("/on_sale", (req, res) => {
+  connection.query(
+    "SELECT * FROM Products WHERE on_sale = 'TRUE'",
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching on-sale products:", err);
+        return res
+          .status(500)
+          .json({ error: "Error fetching on-sale products" });
+      }
+      res.json(results);
+    }
+  );
+});
+router.get("/new_additions", (req, res) => {
+  connection.query(
+    "SELECT * FROM Products WHERE new_additions = 'TRUE'",
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching on-sale products:", err);
+        return res
+          .status(500)
+          .json({ error: "Error fetching on-sale products" });
+      }
+      res.json(results);
+    }
+  );
+});
 // ✅ Fetch all Men's Upcycled Products
 router.get("/men/upcycled", (req, res) => {
   connection.query(

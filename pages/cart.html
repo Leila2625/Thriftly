@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Shopping Cart</title>
-    <!-- Bootstrap CSS Link -->
+    <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -16,7 +16,6 @@
     />
   </head>
   <body>
-    <!-- Content -->
     <div class="content">
       <nav class="navbar navbar-expand-lg py-3 main-nav">
         <div class="container-fluid">
@@ -25,7 +24,6 @@
             ><strong>THRIFTLY</strong></a
           >
 
-          <!-- small screens -->
           <button
             class="navbar-toggler"
             type="button"
@@ -38,7 +36,6 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <!-- Navbar content -->
           <div class="collapse navbar-collapse ms-auto" id="navbarNav">
             <ul class="navbar-nav mx-auto">
               <li class="nav-item me-3">
@@ -56,17 +53,16 @@
             </ul>
           </div>
           <div class="d-flex align-items-center justify-content-end">
-            <a href="../pages/cart.html" class="shop-icon">
-              <i class="bi bi-cart3"></i>
-            </a>
+            <a href="../pages/cart.html" class="shop-icon"
+              ><i class="bi bi-cart3"></i
+            ></a>
           </div>
         </div>
       </nav>
 
       <div class="container mt-5">
-        <h2>Shopping Cart</h2>
+        <h2 class="mb-4">Shopping Cart</h2>
         <div id="cartItemsEmpty"></div>
-        <!-- Cart Items -->
         <div id="shoppingCart" class="row">
           <div class="col-md-9">
             <div id="cartItems"></div>
@@ -74,32 +70,23 @@
           <div class="col-md-3 mb-4">
             <div class="cart-subtotal p-3">
               <h4>Order Summary</h4>
-              <div class="d-flex">
-                <div class="d-flex flex-column">
-                  <h5>Subtotal:</h5>
-                  <div id="totalPrice">$0.00</div>
-                </div>
-                <div class="d-flex flex-column">
-                  <h5>Shipping:</h5>
-                  <p>(Standard Shipping)</p>
-                  <div id="totalShipping">$9.99</div>
-                </div>
-                <div class="d-flex flex-column">
-                  <h4>Total:</h4>
-                  <p>(With tax and shipping included)</p>
-                  <div id="totalCalculatedPrice"><strong>$0.00</strong></div>
-                </div>
-                <div class="d-flex flex-column">
-                  <button id="checkoutButton">Checkout Now</button>
-                </div>
+              <div>
+                <h5>Subtotal: <span id="totalPrice">$0.00</span></h5>
+                <h5>Shipping: <span id="totalShipping">$9.99</span></h5>
+                <h4>
+                  Total:
+                  <span id="totalCalculatedPrice"><strong>$0.00</strong></span>
+                </h4>
               </div>
+              <button id="checkoutButton" class="btn btn-primary mt-3">
+                Checkout Now
+              </button>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Footer -->
     <footer class="py-4">
       <div class="container">
         <ul class="list-inline">

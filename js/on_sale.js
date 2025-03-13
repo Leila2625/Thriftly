@@ -1,140 +1,82 @@
-const products = [
-  {
-    name: "Grey Long Sleeve with Buttons",
-    image: "../assets/female/female5.png",
-    price: "$15.99",
-    description: "Comfortable grey long sleeve with stylish buttons.",
-    id: 5,
-  },
-  {
-    name: "Brown leather Jacket",
-    image: "../assets/female/female1.png",
-    price: "$18.99",
-    description: "A stylish brown leather jacket.",
-    id: 1,
-  },
-  {
-    name: "Tilly's Blue Jeans",
-    image: "../assets/female/female13.png",
-    price: "$15.99",
-    description: "Comfortable grey long sleeve with stylish buttons.",
-    id: 13,
-  },
-  {
-    name: "Old Navy Leggings",
-    image: "../assets/female/female9.png",
-    price: "$18.99",
-    description: "A stylish brown leather jacket.",
-    id: 9,
-  },
-  {
-    name: "Camo Cargos",
-    image: "../assets/male/male5.png",
-    price: "$15.99",
-    description: "Camo-patterned cargos for outdoor adventures.",
-    id: 21,
-  },
-  {
-    name: "Grey Lee Jorts",
-    image: "../assets/male/male1.png",
-    price: "$18.99",
-    description: "Classic grey jorts with a timeless look.",
-    id: 17,
-  },
-  {
-    name: "White Nike T-Shirt",
-    image: "../assets/male/male13.png",
-    price: "$15.99",
-    description: "Simple and classic white Nike T-shirt.",
-    id: 29,
-  },
-  {
-    name: "Black Baggy Jeans",
-    image: "../assets/male/male9.png",
-    price: "$18.99",
-    description: "Stylish black baggy jeans for a relaxed look.",
-    id: 25,
-  },
-];
+document.addEventListener("DOMContentLoaded", function () {
+  const productsDiv = document.getElementById("product-list");
+  const sortButton = document.getElementById("sortButton");
+  let clicked = false;
 
-// Function to generate product cards
-function loadProducts() {
-  const productList = document.getElementById("product-list");
+  // Fetch the products from the server
+  fetch("http://localhost:3000/products/on_sale")
+    .then((response) => response.json())
+    .then((products) => {
+      if (!products || products.length === 0) {
+        productsDiv.innerHTML = "<p>No upcycled products available.</p>";
+        return;
+      }
 
-  // Sort the products by price
-  const sortedProducts = products.sort((a, b) => {
-    // Remove the dollar sign
-    const priceA = parseFloat(a.price.replace("$", ""));
-    const priceB = parseFloat(b.price.replace("$", ""));
-    return priceA - priceB;
-  });
+      // Sort products by price (ascending) by default
+      let sortedProducts = sortByPriceAsc([...products]);
+      loadProducts(sortedProducts);
 
-  // Clear product list before reloading
-  productList.innerHTML = "";
+      // Sorting function
+      function loadProducts(productsToDisplay) {
+        // Clear the existing content
+        productsDiv.innerHTML = "";
 
-  // Loop through sorted products
-  sortedProducts.forEach((product) => {
-    const productCard = document.createElement("div");
-    productCard.classList.add("col-md-3", "mb-4", "text-center");
+        // Loop through the products and create cards
+        productsToDisplay.forEach((product) => {
+          const productCard = document.createElement("div");
+          productCard.classList.add("col-md-3", "mb-4", "text-center");
+          productCard.innerHTML = `
+            <a href="product.html?id=${product.product_id}">
+              <img src="${product.image_url}" class="img-fluid" alt="${product.name}">
+            </a>
+            <div class="d-flex justify-content-center align-items-center mt-2">
+              <h5 class="mb-0">${product.name} (${product.size})</h5>
+            </div>
+            <p><strong>$${product.price}</strong></p>
+          `;
+          productsDiv.appendChild(productCard);
+          console.log(product.image_url);
+          console.log(product.product_id);
+        });
+      }
 
-    productCard.innerHTML = `
-        <a href="product.html?id=${product.id}">
-          <img src="${product.image}" class="img-fluid" alt="${product.name}">
-        </a>
-        <div class="d-flex justify-content-center align-items-center mt-2">
-          <h5 class="mb-0">${product.name}</h5>
-        </div>
-        <p><strong>${product.price}</strong></p>
-      `;
-    productList.appendChild(productCard);
-  });
-}
+      // Sorting by Price Ascending
+      function sortByPriceAsc(products) {
+        return products.sort(
+          (a, b) =>
+            parseFloat(a.price.replace("$", "")) -
+            parseFloat(b.price.replace("$", ""))
+        );
+      }
 
-// Call function to load products when page is ready
-loadProducts();
+      // Sorting by Price Descending
+      function sortByPriceDesc(products) {
+        return products.sort(
+          (a, b) =>
+            parseFloat(b.price.replace("$", "")) -
+            parseFloat(a.price.replace("$", ""))
+        );
+      }
 
-let clicked = false;
-let sortButton = document.getElementById("sortButton");
-sortButton.onclick = () => {
-  if (clicked === false) {
-    const productList = document.getElementById("product-list");
-
-    // Sort the products by price
-    const sortedProducts = products.sort((b, a) => {
-      // Remove the dollar sign
-      const priceA = parseFloat(a.price.replace("$", ""));
-      const priceB = parseFloat(b.price.replace("$", ""));
-      return priceA - priceB;
+      // Sort Button Toggle Functionality
+      sortButton.onclick = () => {
+        if (!clicked) {
+          // Sort in descending order
+          sortedProducts = sortByPriceDesc([...products]);
+          loadProducts(sortedProducts);
+          sortButton.innerHTML = `Sort by Price<span id="arrow">&darr;&uarr;</span>`; // Update button text
+          clicked = true;
+        } else {
+          // Sort in ascending order
+          sortedProducts = sortByPriceAsc([...products]);
+          loadProducts(sortedProducts);
+          sortButton.innerHTML = `Sort by Price<span id="arrow">&uarr;&darr;</span>`; // Update button text
+          clicked = false;
+        }
+      };
+    })
+    .catch((error) => {
+      console.error("Error fetching products:", error);
+      productsDiv.innerHTML = "<p>Failed to load products.</p>";
     });
-
-    productList.innerHTML = "";
-
-    // Loop through sorted products
-    sortedProducts.forEach((product) => {
-      console.log(product.image); // Log the image URL
-      const productCard = document.createElement("div");
-      productCard.classList.add("col-md-3", "mb-4", "text-center");
-
-      productCard.innerHTML = `
-          <a href="product.html?id=${product.id}">
-            <img src="${product.image}" class="img-fluid" alt="${product.name}">
-          </a>
-          <div class="d-flex justify-content-center align-items-center mt-2">
-            <h5 class="mb-0">${product.name}</h5>
-          </div>
-          <p><strong>${product.price}</strong></p>
-        `;
-      productList.appendChild(productCard);
-    });
-    document.getElementById(
-      "sortButton"
-    ).innerHTML = ` Sort by Price<span id="arrow">&darr;&uarr;</span>`;
-    clicked = true;
-  } else if (clicked === true) {
-    loadProducts();
-    document.getElementById(
-      "sortButton"
-    ).innerHTML = ` Sort by Price<span id="arrow">&uarr;&darr;</span>`;
-    clicked = false;
-  }
-};
+});
