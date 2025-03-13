@@ -6,9 +6,9 @@ document.addEventListener("DOMContentLoaded", function () {
     "totalCalculatedPrice"
   );
   const checkoutButton = document.getElementById("checkoutButton");
-  const API_URL = "http://localhost:3000/cart"; // Backend API
+  const API_URL = "http://localhost:3000/cart";
 
-  // ✅ Fetch cart items from backend
+  // Fetch cart items
   function fetchCartItems() {
     fetch(API_URL)
       .then((response) => response.json())
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let total = 0;
 
         cartItems.forEach((item) => {
-          total += parseFloat(item.price); // Ensure price is a number
+          total += parseFloat(item.price); // Make sure the price is a number
 
           const cartItem = document.createElement("div");
           cartItem.classList.add(
@@ -53,11 +53,11 @@ document.addEventListener("DOMContentLoaded", function () {
           cartItemsContainer.appendChild(cartItem);
         });
 
-        // ✅ Store total price including shipping in localStorage
+        // Store total price including shipping in localStorage
         const totalWithShipping = total + 9.99;
         localStorage.setItem("storedPrice", totalWithShipping.toFixed(2));
 
-        // Update total prices in UI
+        // Update total prices on the screen
         totalPriceElement.innerHTML = `$${total.toFixed(2)}`;
         totalCalculatedPriceElement.innerHTML = `$${totalWithShipping.toFixed(
           2
@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  // ✅ Remove item from cart
+  // Remove item from cart
   function attachRemoveEventListeners() {
     document.querySelectorAll(".remove-item").forEach((button) => {
       button.addEventListener("click", function () {
@@ -80,17 +80,17 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(`${API_URL}/${cartId}`, { method: "DELETE" })
           .then((response) => response.json())
           .then(() => {
-            fetchCartItems(); // Refresh cart after deletion
+            fetchCartItems(); // Refresh cart after deleting
           })
           .catch((error) => console.error("Error removing item:", error));
       });
     });
   }
 
-  // ✅ Checkout (Redirects to `cart2.html` WITHOUT clearing the cart)
+  // Checkout (Redirects to 'cart2.html')
   checkoutButton.addEventListener("click", function () {
-    window.location.href = "../pages/cart2.html"; // ✅ Redirect to checkout page
+    window.location.href = "../pages/cart2.html"; // Redirect to checkout page
   });
 
-  fetchCartItems(); // Initial load
+  fetchCartItems();
 });
