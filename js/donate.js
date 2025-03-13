@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
       inquiry: document.getElementById("message").value,
     };
 
-    // Validation checks
+    // Validation checks in form
     const nameRegex = /^[A-Za-z\s]+$/; // Only letters and spaces
     const phoneRegex = /^[0-9\-\+\/]+$/; // Only numbers, hyphens, slashes, and plus signs
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/; // Basic email format
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const data = await response.json();
       if (response.ok) {
         alert("Form submitted successfully!");
-        form.reset(); // Clear form fields after successful submission
+        form.reset(); // Clear form fields after a successful submission
       } else {
         alert("Error: " + data.message);
       }
