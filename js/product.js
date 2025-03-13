@@ -1,70 +1,121 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const API_URL = "http://localhost:3000/products"; // Backend URL
+const express = require("express");
+const connection = require("../db"); // Database connection
 
-  // Fetch and display product details
-  fetch(API_URL)
-    .then((response) => response.json())
-    .then((products) => {
-      // Get product ID from URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const productId = urlParams.get("id");
+const router = express.Router();
 
-      // Find and display the product details
-      const product = products.find((item) => item.product_id == productId);
-      if (product) {
-        document.getElementById(
-          "productSize"
-        ).textContent = `Size ${product.size}`;
-        document.getElementById("productImage").src = product.image_url;
-        document.getElementById("productName").textContent = product.name;
-        document.getElementById("productDescription").textContent =
-          product.description;
-        document.getElementById(
-          "productPrice"
-        ).textContent = `$${product.price}`;
-      } else {
-        document.getElementById("productName").textContent =
-          "Product Not Found";
+// Fetch all
+router.get("/", (req, res) => {
+  connection.query("SELECT * FROM Products", (err, results) => {
+    if (err) {
+      console.error("Error fetching products:", err);
+      return res.status(500).json({ error: "Error fetching products" });
+    }
+    res.json(results);
+  });
+});
+// Fetch on sale items
+router.get("/on_sale", (req, res) => {
+  connection.query(
+    "SELECT * FROM Products WHERE on_sale = 'TRUE'",
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching on-sale products:", err);
+        return res
+          .status(500)
+          .json({ error: "Error fetching on-sale products" });
       }
-    })
-    .catch((error) => console.error("Error fetching products:", error));
+      res.json(results);
+    }
+  );
+});
+// Fetch new addition items
+router.get("/new_additions", (req, res) => {
+  connection.query(
+    "SELECT * FROM Products WHERE new_additions = 'TRUE'",
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching on-sale products:", err);
+        return res
+          .status(500)
+          .json({ error: "Error fetching on-sale products" });
+      }
+      res.json(results);
+    }
+  );
+});
+//Fetch Men's Upcycled Products
+router.get("/men/upcycled", (req, res) => {
+  connection.query(
+    "SELECT * FROM Products WHERE category = 'Upcycled' AND gender = 'Male'",
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching men's upcycled products:", err);
+        return res.status(500).json({ error: "Error fetching products" });
+      }
+      res.json(results);
+    }
+  );
 });
 
-// ✅ Function to add a product to the cart using API
-function addToCart() {
-  // Get product ID from URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const productId = urlParams.get("id");
-
-  if (!productId) {
-    alert("Error: Product ID not found.");
-    return;
-  }
-
-  console.log("Adding product to cart with product_id:", productId);
-
-  fetch("http://localhost:3000/cart", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ product_id: parseInt(productId, 10) }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log("Cart Response:", data); // Debugging log
-      alert(data.message); // Show success message
-    })
-    .catch((error) => {
-      console.error("Error adding product to cart:", error);
-      alert("Failed to add product to cart.");
-    });
-}
-
-// ✅ Keep the existing "Add to Cart" button event listener
-document.addEventListener("DOMContentLoaded", () => {
-  const addToCartButton = document.getElementById("addToCartButton");
-  if (addToCartButton) {
-    addToCartButton.addEventListener("click", addToCart);
-  }
+// Fetch Men's Thrifted Products
+router.get("/men/thrift", (req, res) => {
+  connection.query(
+    "SELECT * FROM Products WHERE category = 'Thrift' AND gender = 'Male'",
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching men's thrifted products:", err);
+        return res.status(500).json({ error: "Error fetching products" });
+      }
+      res.json(results);
+    }
+  );
 });
+
+// Fetch Women's Upcycled Products
+router.get("/women/upcycled", (req, res) => {
+  connection.query(
+    "SELECT * FROM Products WHERE category = 'Upcycled' AND gender = 'Female'",
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching women's upcycled products:", err);
+        return res.status(500).json({ error: "Error fetching products" });
+      }
+      res.json(results);
+    }
+  );
+});
+
+// Fetch Women's Thrifted Products
+router.get("/women/thrift", (req, res) => {
+  connection.query(
+    "SELECT * FROM Products WHERE category = 'Thrift' AND gender = 'Female'",
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching women's thrifted products:", err);
+        return res.status(500).json({ error: "Error fetching products" });
+      }
+      res.json(results);
+    }
+  );
+});
+
+// Fetch by ID
+router.get("/:id", (req, res) => {
+  const { id } = req.params;
+  connection.query(
+    "SELECT * FROM Products WHERE product_id = ?", // Use correct column name
+    [id],
+    (err, results) => {
+      if (err) {
+        console.error("Error fetching product:", err);
+        return res.status(500).json({ error: "Error fetching product" });
+      }
+      if (results.length === 0) {
+        return res.status(404).json({ error: "Product not found" });
+      }
+      res.json(results[0]); // Return a single product
+    }
+  );
+});
+
+module.exports = router;
