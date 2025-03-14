@@ -33,7 +33,7 @@ function validateForm(event) {
       errorId: "suiteError",
       optional: true,
     },
-    { id: "cardNumber", regex: /^[0-9]+$/, errorId: "cardNumberError" },
+    { id: "cardNumber", regex: /^[0-9\s]+$/, errorId: "cardNumberError" },
     { id: "expMonth", regex: /^[0-9]{2}$/, errorId: "expMonthError" },
     { id: "expYear", regex: /^[0-9]{4}$/, errorId: "expYearError" },
     { id: "cvv", regex: /^[0-9]{3,4}$/, errorId: "cvvError" },
