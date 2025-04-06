@@ -32,12 +32,13 @@ function validateForm(event) {
       regex: /^[A-Za-z0-9\s.,-]*$/,
       errorId: "suiteError",
       optional: true,
-    } /*
+    },
     { id: "cardNumber", regex: /^[0-9\s]+$/, errorId: "cardNumberError" },
     { id: "expMonth", regex: /^[0-9]{2}$/, errorId: "expMonthError" },
     { id: "expYear", regex: /^[0-9]{4}$/, errorId: "expYearError" },
     { id: "cvv", regex: /^[0-9]{3,4}$/, errorId: "cvvError" },
-    { id: "cardName", regex: /^[A-Za-z\s]+$/, errorId: "cardNameError" }, */,
+    { id: "cardName", regex: /^[A-Za-z\s]+$/, errorId: "cardNameError" },
+    ,
   ];
 
   validationRules.forEach(({ id, regex, errorId, optional }) => {
