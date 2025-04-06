@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
     "totalCalculatedPrice"
   );
   const checkoutButton = document.getElementById("checkoutButton");
+  const totalShippingElement = document.getElementById("totalShipping");
   const API_URL = "http://localhost:3000/cart";
 
   // Fetch cart items
@@ -16,16 +17,19 @@ document.addEventListener("DOMContentLoaded", function () {
         cartItemsContainer.innerHTML = ""; // Clear previous items
 
         if (!cartItems || cartItems.length === 0) {
+          // If the cart is empty, display a message and set shipping to 0.00
           cartItemsEmpty.innerHTML = "<p>Your cart is empty.</p>";
           totalPriceElement.innerHTML = "$0.00";
-          totalCalculatedPriceElement.innerHTML = "$9.99"; // Shipping only
+          totalCalculatedPriceElement.innerHTML = "$0.00"; // Shipping is 0 when empty
+          totalShippingElement.innerHTML = "TBD"; // Shipping is 0 when empty
+          localStorage.setItem("storedPrice", "0.00"); // Reset stored price in localStorage
           return;
         }
 
         let total = 0;
 
         cartItems.forEach((item) => {
-          total += parseFloat(item.price); // Make sure the price is a number
+          total += parseFloat(item.price); // Ensure the price is a number
 
           const cartItem = document.createElement("div");
           cartItem.classList.add(
@@ -37,24 +41,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
           cartItem.innerHTML = `
             <div class="d-flex align-items-center">
-              <!-- Increase the image size -->
-              <img src="${item.image_url}" class="cart-img me-3" alt="${item.name}"
-              style="width: 200px; height: 200px;"> <!-- Increased image size -->
+              <img src="${item.image_url}" class="cart-img me-3" alt="${item.name}" style="width: 200px; height: 200px;">
               <div>
                 <h5>${item.name}</h5>
                 <p>Price: $${item.price}</p>
               </div>
             </div>
-            <!-- Reduce the size of the remove button -->
-            <button class="btn btn-danger btn-sm remove-item"
-            data-cart-id="${item.cart_id}" style="font-size: 0.75rem; padding: 0.3rem 0.6rem; height: 40px; width: auto;">Remove</button> <!-- Smaller button -->
+            <button class="btn btn-danger btn-sm remove-item" data-cart-id="${item.cart_id}" style="font-size: 0.75rem; padding: 0.3rem 0.6rem; height: 40px; width: auto;">Remove</button>
           `;
 
           cartItemsContainer.appendChild(cartItem);
         });
 
         // Store total price including shipping in localStorage
-        const totalWithShipping = total + 9.99;
+        const shippingCost = 9.99; // Default shipping cost
+        const totalWithShipping = total + shippingCost;
         localStorage.setItem("storedPrice", totalWithShipping.toFixed(2));
 
         // Update total prices on the screen
@@ -62,6 +63,7 @@ document.addEventListener("DOMContentLoaded", function () {
         totalCalculatedPriceElement.innerHTML = `$${totalWithShipping.toFixed(
           2
         )}`;
+        totalShippingElement.innerHTML = `$9.99`; // Set shipping to $9.99 when cart is not empty
 
         attachRemoveEventListeners();
       })
