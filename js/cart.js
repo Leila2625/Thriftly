@@ -8,11 +8,16 @@ document.addEventListener("DOMContentLoaded", function () {
   const checkoutButton = document.getElementById("checkoutButton");
   const totalShippingElement = document.getElementById("totalShipping");
   const API_URL = "http://localhost:3000/cart";
+  const sessionId = localStorage.getItem("session_id");
+  
 
   // Fetch cart items
   function fetchCartItems() {
-    fetch(API_URL)
+    const sessionId = localStorage.getItem("session_id");
+    console.log("Fetching cart for session:", sessionId);
+    fetch(`${API_URL}/${sessionId}`)
       .then((response) => response.json())
+    
       .then((cartItems) => {
         cartItemsContainer.innerHTML = ""; // Clear previous items
 
