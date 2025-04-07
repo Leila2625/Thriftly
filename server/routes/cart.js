@@ -1,18 +1,20 @@
 const express = require("express");
 const connection = require("../db"); // Database connection
-
 const router = express.Router();
 
-//Fetch all the items in the cart (with product details from Products table)
-router.get("/", (req, res) => {
-  const query = `
-SELECT Cart.cart_id, Cart.product_id, Cart.added_at,
-Products.name, Products.price, Products.image_url
-FROM Cart
-JOIN Products ON Cart.product_id = Products.product_id
-`;
+// Fetch all the items in the cart for a session (with product details)
+router.get("/:session_id", (req, res) => {
+  const session_id = req.params.session_id;
 
-  connection.query(query, (err, results) => {
+  const query = `
+    SELECT Cart.cart_id, Cart.session_id, Cart.product_id, Cart.added_at,
+           Products.name, Products.price, Products.image_url
+    FROM Cart
+    JOIN Products ON Cart.product_id = Products.product_id
+    WHERE Cart.session_id = ?
+  `;
+
+  connection.query(query, [session_id], (err, results) => {
     if (err) {
       console.error("Error fetching cart items:", err);
       return res.status(500).json({ error: "Error fetching cart items" });
@@ -21,25 +23,42 @@ JOIN Products ON Cart.product_id = Products.product_id
   });
 });
 
-// Add item to the cart (Only product_id)
+// Add item to cart
 router.post("/", (req, res) => {
-  const { product_id } = req.body;
+  const { product_id, session_id } = req.body;
 
-  if (!product_id) {
-    return res.status(400).json({ message: "Product ID is required." });
+  console.log("Received POST /cart");
+  console.log("product_id:", product_id);
+  console.log("session_id:", session_id);
+
+
+  if (!product_id || !session_id) {
+    return res
+      .status(400)
+      .json({ message: "Product ID and session ID are required." });
   }
 
-  const query = "INSERT INTO Cart (product_id) VALUES (?)";
-  connection.query(query, [product_id], (err, results) => {
+
+    const checkQuery = "SELECT * FROM Cart WHERE product_id = ? AND session_id = ?";
+  connection.query(checkQuery, [product_id, session_id], (err, results) => {
     if (err) {
-      console.error("Error adding product to cart:", err);
-      return res
-        .status(500)
-        .json({ message: "Failed to add product to cart." });
+      console.error("Error checking cart:", err);
+      return res.status(500).json({ error: "Error checking cart" });
     }
-    res.status(201).json({
-      message: "Product added to cart successfully!",
-      cart_id: results.insertId,
+
+    if (results.length > 0) {
+      // Item already in cart, don't add it again
+      return res.status(409).json({ message: "Item already in cart." });
+    }
+
+    // Add new item
+    const insertQuery = "INSERT INTO Cart (product_id, session_id) VALUES (?, ?)";
+    connection.query(insertQuery, [product_id, session_id], (err, result) => {
+      if (err) {
+        console.error("Error inserting into cart:", err);
+        return res.status(500).json({ error: "Failed to add to cart" });
+      }
+      res.status(201).json({ message: "Product added to cart." });
     });
   });
 });
