@@ -23,6 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("productName").textContent = product.name;
         document.getElementById("productDescription").textContent = product.description;
         document.getElementById("productPrice").textContent = `$${product.price}`;
+        document.getElementById("productColor").textContent = `Color: ${product.color}`;
+
       } else {
         document.getElementById("productName").textContent = "Product Not Found";
       }
