@@ -80,15 +80,24 @@ router.delete("/:cart_id", (req, res) => {
   });
 });
 
-// Clear entire cart
-router.delete("/", (req, res) => {
-  connection.query("DELETE FROM Cart", (err, results) => {
+// Clear cart for a specific session
+router.delete("/session/:session_id", (req, res) => {
+  const session_id = req.params.session_id;
+
+  console.log("DELETE /cart/session/:session_id called with:", session_id);
+
+  const query = "DELETE FROM Cart WHERE session_id = ?";
+  connection.query(query, [session_id], (err, results) => {
     if (err) {
       console.error("Error clearing cart:", err);
       return res.status(500).json({ error: "Failed to clear cart" });
     }
+
+    console.log("Cart cleared for session:", session_id);
     res.json({ message: "Cart cleared successfully!" });
   });
 });
+
+
 
 module.exports = router;
