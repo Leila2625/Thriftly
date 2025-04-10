@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .padStart(2, "0")}-${date.getFullYear()}`;
 
           htmlContent += `
-            <div class="inquiry-item card p-4 mb-4 shadow-sm rounded">
+            <div class="inquiry-item card p-4 mb-3 shadow-sm rounded">
               <h5 class="card-title"><strong>Name:</strong> ${inquiry.name}</h5>
               <p class="card-text"><strong>Email:</strong> ${inquiry.email}</p>
               <p class="card-text"><strong>Phone Number:</strong> ${inquiry.phone_number}</p>
@@ -51,12 +51,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (response.ok) {
         const data = await response.json();
-        data.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        // Sort orders by order_date
+        data.sort((a, b) => new Date(b.order_date) - new Date(a.order_date));
 
         let htmlContent = `<div class="container my-5">`;
 
         data.forEach((order) => {
-          const date = new Date(order.created_at);
+          const date = new Date(order.order_date); // Use order_date here
           const formattedDate = `${(date.getMonth() + 1)
             .toString()
             .padStart(2, "0")}-${date
@@ -65,18 +66,11 @@ document.addEventListener("DOMContentLoaded", function () {
             .padStart(2, "0")}-${date.getFullYear()}`;
 
           htmlContent += `
-            <div class="order-item card p-4 mb-4 shadow-sm rounded">
-              <h5 class="card-title"><strong>Order ID:</strong> ${order.id}</h5>
-              <p class="card-text"><strong>Customer:</strong> ${
-                order.first_name
-              } ${order.last_name}</p>
+            <div class="order-item card p-4 mb-3 shadow-sm rounded">
+              <h5 class="card-title"><strong>Customer:</strong> ${order.first_name} ${order.last_name}</h5>
               <p class="card-text"><strong>Email:</strong> ${order.email}</p>
-              <p class="card-text"><strong>Total Price:</strong> $${order.total_price.toFixed(
-                2
-              )}</p>
-              <p class="card-text"><strong>Address:</strong> ${
-                order.address
-              }</p>
+              <p class="card-text"><strong>Total Price:</strong> $${order.total_price}</p>
+              <p class="card-text"><strong>Address:</strong> ${order.address}</p>
               <p class="card-text"><strong>Date:</strong> ${formattedDate}</p>
             </div>
           `;
@@ -96,20 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Show inquiries section and hide orders section
-  window.showInquiries = function () {
-    document.getElementById("inquiriesSection").style.display = "block";
-    document.getElementById("ordersSection").style.display = "none";
-    fetchInquiries();
-  };
-
-  // Show orders section and hide inquiries section
-  window.showOrders = function () {
-    document.getElementById("inquiriesSection").style.display = "none";
-    document.getElementById("ordersSection").style.display = "block";
-    fetchOrders();
-  };
-
   // Fetch inquiries by default when the page loads
   fetchInquiries();
+  fetchOrders();
 });

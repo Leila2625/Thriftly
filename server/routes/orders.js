@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
 
   connection.query(
     query,
-    [first_name, last_name, email, address, total_price], // Include email in the values
+    [first_name, last_name, email, address, total_price],
     (err, result) => {
       if (err) {
         console.error("Error creating order:", err);
