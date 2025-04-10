@@ -4,9 +4,8 @@ const router = express.Router();
 
 // Create a new order
 router.post("/", (req, res) => {
-  const { first_name, last_name, email, address, total_price } = req.body; // Added email
+  const { first_name, last_name, email, address, total_price } = req.body;
 
-  // Check for required fields
   if (
     !first_name ||
     !last_name ||
@@ -39,9 +38,9 @@ router.post("/", (req, res) => {
   );
 });
 
-// Get all orders (for demonstration or admin purposes)
+// Get all orders
 router.get("/", (req, res) => {
-  const query = "SELECT * FROM Orders"; // Changed to Orders
+  const query = "SELECT * FROM Orders";
 
   connection.query(query, (err, results) => {
     if (err) {
