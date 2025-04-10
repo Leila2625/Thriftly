@@ -3,71 +3,43 @@ document.addEventListener("DOMContentLoaded", function () {
   const totalPriceElement = document.getElementById("totalSummaryPrice");
   const totalExplanation = document.getElementById("totalExplanation");
   const shoppingCart = document.getElementById("shoppingCart");
-  const API_URL = "http://localhost:3000/cart"; // Backend API
+  const API_URL = "http://localhost:3000/orders";
 
-  // Load total price from localStorage
-  let storedPrice = localStorage.getItem("storedPrice");
-  let numericPrice = parseFloat(storedPrice) || 0;
-
-  if (numericPrice > 0) {
-    totalPriceElement.innerHTML = `<strong>Total</strong>:
-  $${numericPrice.toFixed(2)}`;
-    totalExplanation.innerHTML = `<strong>Subtotal</strong>:
-  $${(numericPrice - 9.99).toFixed(2)}
-  + $9.99 <strong>Shipping</strong>`;
-  } else {
-    totalPriceElement.innerHTML = "<strong>Total</strong>: $0.00";
-    totalExplanation.innerHTML = "";
-  }
-
-  // Fetch cart items
   fetch(API_URL)
     .then((response) => response.json())
-    .then((cartItems) => {
-      cartItemsContainer.innerHTML = ""; // Clear previous items
-
-      if (!cartItems || cartItems.length === 0) {
-        cartItemsContainer.innerHTML = "<p>Your order is empty!</p>";
+    .then((orders) => {
+      if (!Array.isArray(orders) || orders.length === 0) {
+        cartItemsContainer.innerHTML = "<p>Could not load your order.</p>";
         shoppingCart.classList.add("hidden");
         return;
       }
 
-      cartItems.forEach((item) => {
-        const cartItem = document.createElement("div");
-        cartItem.classList.add(
-          "cart-item",
-          "d-flex",
-          "justify-content-between",
-          "mb-3"
-        );
+      // Get the most recent order
+      const latestOrder = orders[orders.length - 1];
 
-        cartItem.innerHTML = `
-  <div class="d-flex align-items-center">
-  <img src="${item.image_url}" class="cart-img me-3" alt="${item.name}"
-  style="width: 80px; height: 80px;">
-  <div>
-  <h5>${item.name}</h5>
-  <p>Price: $${item.price}</p>
-  </div>
-  </div>
-  `;
+      cartItemsContainer.innerHTML = `
+        <div class="mb-4">
+          <h4>Order Details</h4>
+          <p><strong>Name:</strong> ${latestOrder.first_name} ${latestOrder.last_name}</p>
+          <p><strong>Email:</strong> ${latestOrder.email}</p>
+          <p><strong>Shipping Address:</strong> ${latestOrder.address}</p>
+          <p><strong>Order Date:</strong> ${new Date(latestOrder.order_date).toLocaleString()}</p>
+        </div>
+      `;
 
-        cartItemsContainer.appendChild(cartItem);
-      });
+      const price = parseFloat(latestOrder.total_price);
+      const shipping = 9.99;
+      const subtotal = (price - shipping).toFixed(2);
 
-      // Clear cart AFTER displaying order summary
-      fetch(API_URL, { method: "DELETE" })
-        .then(() => {
-          console.log("Cart cleared successfully!");
-        })
-        .catch((error) => console.error("Error clearing cart:", error));
+      totalPriceElement.innerHTML = `<strong>Total:</strong> $${price.toFixed(2)}`;
+      totalExplanation.innerHTML = `<strong>Subtotal:</strong> $${subtotal} + $9.99 <strong>Shipping</strong>`;
     })
     .catch((error) => {
-      console.error("Error fetching cart items:", error);
+      console.error("Error fetching order details:", error);
       cartItemsContainer.innerHTML = "<p>Failed to load order details.</p>";
     });
 
-  // Clear localStorage items so the cart is empty for the next session
+  // Clear localStorage cart
   window.addEventListener("beforeunload", () => {
     localStorage.removeItem("cart");
     localStorage.removeItem("storedPrice");
