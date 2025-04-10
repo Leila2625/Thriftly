@@ -18,12 +18,16 @@ document.addEventListener("DOMContentLoaded", function () {
       const latestOrder = orders[orders.length - 1];
 
       cartItemsContainer.innerHTML = `
-        <div class="mb-4">
-          <h4>Order Details</h4>
-          <p><strong>Name:</strong> ${latestOrder.first_name} ${latestOrder.last_name}</p>
+        <div class="mt-3 text-center">
+          <h4 class="mb-3">Order Details:</h4>
+          <p><strong>Name:</strong> ${latestOrder.first_name} ${
+        latestOrder.last_name
+      }</p>
           <p><strong>Email:</strong> ${latestOrder.email}</p>
           <p><strong>Shipping Address:</strong> ${latestOrder.address}</p>
-          <p><strong>Order Date:</strong> ${new Date(latestOrder.order_date).toLocaleString()}</p>
+          <p><strong>Order Date:</strong> ${new Date(
+            latestOrder.order_date
+          ).toLocaleString()}</p>
         </div>
       `;
 
@@ -31,7 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const shipping = 9.99;
       const subtotal = (price - shipping).toFixed(2);
 
-      totalPriceElement.innerHTML = `<strong>Total:</strong> $${price.toFixed(2)}`;
+      totalPriceElement.innerHTML = `<strong>Total:</strong> $${price.toFixed(
+        2
+      )}`;
       totalExplanation.innerHTML = `<strong>Subtotal:</strong> $${subtotal} + $9.99 <strong>Shipping</strong>`;
     })
     .catch((error) => {

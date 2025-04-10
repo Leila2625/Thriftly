@@ -1,4 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Update the totalCheckout element with the storedPrice value from localStorage
+  let storedPrice = localStorage.getItem("storedPrice");
+  if (storedPrice) {
+    let numericPrice = parseFloat(storedPrice).toFixed(2); // Ensure two decimal places
+    document.getElementById(
+      "totalCheckout"
+    ).textContent = `Total is: $${numericPrice}`;
+  } else {
+    document.getElementById("totalCheckout").textContent = "Total is: $0.00";
+  }
+
   const checkoutForm = document.getElementById("checkoutForm");
 
   if (checkoutForm) {
@@ -11,7 +22,14 @@ document.addEventListener("DOMContentLoaded", () => {
   function validateForm() {
     let valid = true;
 
-    const fields = ["firstName", "lastName", "email", "address", "zip", "state"];
+    const fields = [
+      "firstName",
+      "lastName",
+      "email",
+      "address",
+      "zip",
+      "state",
+    ];
     fields.forEach((fieldId) => {
       const input = document.getElementById(fieldId);
       const errorSpan = document.getElementById(`${fieldId}Error`);
