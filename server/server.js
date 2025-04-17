@@ -5,7 +5,6 @@ const productsRoutes = require("./routes/products");
 const donateRoutes = require("./routes/donate_sell");
 const cartRoutes = require("./routes/cart");
 const orderRoutes = require("./routes/orders");
-const orderItems = require("./routes/order_items");
 
 const app = express();
 const port = 3000;
